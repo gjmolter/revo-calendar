@@ -2,7 +2,7 @@
   "name": "revo-calendar",
   "version": "1.0.0",
   "description": "React Event Calendar Component",
-  "author": "gjmolter",
+  "author": "Gabriel Molter",
   "license": "MIT",
   "repository": "gjmolter/revo-calendar",
   "main": "dist/index.js",

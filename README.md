@@ -15,12 +15,11 @@ npm install --save revo-calendar
 ```jsx
 import React, { Component } from 'react'
 
-import MyComponent from 'revo-calendar'
-import 'revo-calendar/dist/index.css'
+import RevoCalendar from 'revo-calendar'
 
 class Example extends Component {
   render() {
-    return <MyComponent />
+    return <RevoCalendar />
   }
 }
 ```

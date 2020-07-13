@@ -1,7 +1,7 @@
-import { ExampleComponent } from '.'
+import RevoCalendar from '.'
 
-describe('ExampleComponent', () => {
+describe('RevoCalendar', () => {
   it('is truthy', () => {
-    expect(ExampleComponent).toBeTruthy()
+    expect(RevoCalendar).toBeTruthy()
   })
 })

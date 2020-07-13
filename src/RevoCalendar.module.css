@@ -1,0 +1,592 @@
+.revoCalendar {
+  --primaryColor: black;
+  --primaryColor50: #00000080;
+  --secondaryColor: white;
+  --accentColor: blue;
+  --animationSpeed: 300ms;
+  --sidebarWidth: 180px;
+  --detailWidth: 250px;
+  --minHeight: 0;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: var(--minHeight);
+}
+
+.revoCalendar * {
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+.revoCalendar .sidebar {
+  background: var(--primaryColor);
+  position: relative;
+  left: 0;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.revoCalendar .sidebar.defaultOpen {
+  width: var(--sidebarWidth);
+  min-width: var(--sidebarWidth);
+  -webkit-box-shadow: 0 0 10px #0004;
+          box-shadow: 0 0 10px #0004;
+}
+
+.revoCalendar .sidebar.defaultClosed {
+  width: 0px;
+  min-width: 0px;
+}
+
+.revoCalendar .sidebar .currentMonth {
+  background: var(--secondaryColor);
+  color: var(--primaryColor);
+}
+
+.revoCalendar .sidebar .yearSelect {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 1rem;
+  color: var(--secondaryColor);
+}
+
+.revoCalendar .sidebar .yearSelect span {
+  font-size: 1.4rem;
+  padding: 10px;
+  color: var(--secondaryColor);
+}
+
+.revoCalendar .sidebar .yearSelect button {
+  background: none;
+  border: none;
+  width: 20px;
+}
+
+.revoCalendar .sidebar ul {
+  list-style: none;
+  padding-bottom: 1rem;
+  padding-left: 0;
+}
+
+.revoCalendar .sidebar ul button {
+  border: none;
+  background: none;
+  font-size: 1rem;
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  text-align: left;
+  padding: 0.4rem 0.5rem;
+  color: var(--secondaryColor);
+}
+
+.revoCalendar .sidebar ul button:hover {
+  background: var(--secondaryColor);
+  color: var(--primaryColor);
+}
+
+.revoCalendar .closeSidebar {
+  position: absolute;
+  top: 0;
+  height: 40px;
+  width: 40px;
+  border: none;
+  z-index: 10;
+  background: var(--primaryColor);
+}
+
+.revoCalendar .closeSidebar.defaultOpen {
+  left: var(--sidebarWidth);
+  z-index: 15;
+}
+
+.revoCalendar .closeSidebar.defaultClosed {
+  left: 0;
+}
+
+.revoCalendar .inner {
+  padding: 1rem;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  max-width: 100%;
+}
+
+.revoCalendar .inner .scrollInner {
+  overflow-x: scroll;
+}
+
+.revoCalendar .inner .monthName {
+  text-align: center;
+  border-bottom: 1px solid var(--accentColor);
+  margin-bottom: 1rem;
+  color: var(--primaryColor);
+}
+
+.revoCalendar .inner .dayNames {
+  text-align: center;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(40px, 1fr))[7];
+      grid-template-columns: repeat(7, minmax(40px, 1fr));
+  margin-bottom: 1rem;
+}
+
+.revoCalendar .inner .days {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(40px, 1fr))[7];
+      grid-template-columns: repeat(7, minmax(40px, 1fr));
+}
+
+.revoCalendar .inner .days .day {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 60px;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.revoCalendar .inner .days .day > button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  height: 4.5vw;
+  width: 4.5vw;
+  max-width: 60px;
+  border-radius: 50%;
+  max-height: 60px;
+  background: none;
+  border: none;
+  font-size: 1rem;
+  color: #333;
+}
+
+.revoCalendar .inner .days .day > button:hover {
+  background: var(--primaryColor50) !important;
+}
+
+.revoCalendar .inner .days .today {
+  border: 2px solid var(--accentColor) !important;
+}
+
+.revoCalendar .inner .days .currentDay {
+  background: var(--primaryColor) !important;
+  color: var(--secondaryColor) !important;
+}
+
+.revoCalendar .detail {
+  background: var(--primaryColor);
+  position: relative;
+  right: 0;
+  overflow: hidden;
+  z-index: 10;
+}
+
+.revoCalendar .detail.defaultOpen {
+  width: var(--detailWidth);
+  min-width: var(--detailWidth);
+  -webkit-box-shadow: 0 0 10px #0004;
+          box-shadow: 0 0 10px #0004;
+}
+
+.revoCalendar .detail.defaultClosed {
+  width: 0px;
+  min-width: 0px;
+}
+
+.revoCalendar .detail .dateTitle {
+  color: white;
+  text-align: center;
+  font-size: 1.6rem;
+  padding: 0 1rem;
+  height: 100px;
+  z-index: 10;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.revoCalendar .detail .events {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 0.6rem;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  max-height: 500px;
+}
+
+.revoCalendar .detail .events::before {
+  content: '';
+}
+
+.revoCalendar .detail .events::after {
+  content: ' ';
+  white-space: pre;
+  line-height: 0;
+}
+
+.revoCalendar .detail .events > p {
+  padding: 0.8rem;
+  color: var(--secondaryColor);
+  font-size: 1.1rem;
+}
+
+.revoCalendar .detail .events .event {
+  width: 90%;
+  padding: 10px 15px;
+  border-radius: 20px;
+  background: var(--secondaryColor);
+  -webkit-transition: -webkit-box-shadow var(--animationSpeed) ease;
+  transition: -webkit-box-shadow var(--animationSpeed) ease;
+  transition: box-shadow var(--animationSpeed) ease;
+  transition: box-shadow var(--animationSpeed) ease, -webkit-box-shadow var(--animationSpeed) ease;
+}
+
+.revoCalendar .detail .events .event button {
+  border: none;
+  width: 100%;
+  height: 30px;
+  margin-top: 0.5rem;
+  border-radius: 30px;
+  background: var(--primaryColor);
+  color: var(--secondaryColor);
+  font-size: 0.8rem;
+}
+
+.revoCalendar .detail .events .event > p {
+  font-size: 1.2rem;
+  text-align: center;
+  color: var(--primaryColor);
+  margin-bottom: 0.4rem;
+  font-weight: bold;
+}
+
+.revoCalendar .detail .events .event > div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 5px;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
+}
+
+.revoCalendar .detail .events .event > div div {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  gap: 8px;
+}
+
+.revoCalendar .detail .events .event > div div span {
+  font-size: 1rem;
+  font-weight: lighter;
+}
+
+.revoCalendar .detail .events .event:hover {
+  -webkit-box-shadow: 0 0 10px #0004;
+          box-shadow: 0 0 10px #0004;
+}
+
+.revoCalendar .closeDetail {
+  position: absolute;
+  top: 0;
+  height: 40px;
+  width: 40px;
+  border: none;
+  z-index: 10;
+  background: var(--primaryColor);
+}
+
+.revoCalendar .closeDetail.defaultOpen {
+  right: var(--detailWidth);
+  z-index: 15;
+}
+
+.revoCalendar .closeDetail.defaultClosed {
+  right: 0;
+}
+
+.revoCalendar .floating {
+  height: 100%;
+  position: absolute;
+}
+
+.slideInLeft {
+  -webkit-animation: slideInLeft var(--animationSpeed);
+          animation: slideInLeft var(--animationSpeed);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.slideOutLeft {
+  -webkit-animation: slideOutLeft var(--animationSpeed);
+          animation: slideOutLeft var(--animationSpeed);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.slideInRight {
+  -webkit-animation: slideInRight var(--animationSpeed);
+          animation: slideInRight var(--animationSpeed);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.slideOutRight {
+  -webkit-animation: slideOutRight var(--animationSpeed);
+          animation: slideOutRight var(--animationSpeed);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.sidebarTogglerSlideIn {
+  -webkit-animation: slideInTogglerLeft var(--animationSpeed);
+          animation: slideInTogglerLeft var(--animationSpeed);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.sidebarTogglerSlideOut {
+  -webkit-animation: slideOutTogglerLeft var(--animationSpeed);
+          animation: slideOutTogglerLeft var(--animationSpeed);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.detailsTogglerSlideIn {
+  -webkit-animation: slideInTogglerRight var(--animationSpeed);
+          animation: slideInTogglerRight var(--animationSpeed);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.detailsTogglerSlideOut {
+  -webkit-animation: slideOutTogglerRight var(--animationSpeed);
+          animation: slideOutTogglerRight var(--animationSpeed);
+  -webkit-animation-timing-function: ease;
+          animation-timing-function: ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes slideInLeft {
+  0% {
+    width: 0px;
+    min-width: 0px;
+  }
+  100% {
+    width: var(--sidebarWidth);
+    min-width: var(--sidebarWidth);
+  }
+}
+
+@keyframes slideInLeft {
+  0% {
+    width: 0px;
+    min-width: 0px;
+  }
+  100% {
+    width: var(--sidebarWidth);
+    min-width: var(--sidebarWidth);
+  }
+}
+
+@-webkit-keyframes slideOutLeft {
+  0% {
+    width: var(--sidebarWidth);
+    min-width: var(--sidebarWidth);
+  }
+  100% {
+    width: 0px;
+    min-width: 0px;
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    width: var(--sidebarWidth);
+    min-width: var(--sidebarWidth);
+  }
+  100% {
+    width: 0px;
+    min-width: 0px;
+  }
+}
+
+@-webkit-keyframes slideInRight {
+  0% {
+    width: 0px;
+    min-width: 0px;
+  }
+  100% {
+    width: var(--detailWidth);
+    min-width: var(--detailWidth);
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    width: 0px;
+    min-width: 0px;
+  }
+  100% {
+    width: var(--detailWidth);
+    min-width: var(--detailWidth);
+  }
+}
+
+@-webkit-keyframes slideOutRight {
+  0% {
+    width: var(--detailWidth);
+    min-width: var(--detailWidth);
+  }
+  100% {
+    width: 0px;
+    min-width: 0px;
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    width: var(--detailWidth);
+    min-width: var(--detailWidth);
+  }
+  100% {
+    width: 0px;
+    min-width: 0px;
+  }
+}
+
+@-webkit-keyframes slideInTogglerLeft {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: var(--sidebarWidth);
+  }
+}
+
+@keyframes slideInTogglerLeft {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: var(--sidebarWidth);
+  }
+}
+
+@-webkit-keyframes slideOutTogglerLeft {
+  0% {
+    left: var(--sidebarWidth);
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@keyframes slideOutTogglerLeft {
+  0% {
+    left: var(--sidebarWidth);
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@-webkit-keyframes slideInTogglerRight {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: var(--detailWidth);
+  }
+}
+
+@keyframes slideInTogglerRight {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: var(--detailWidth);
+  }
+}
+
+@-webkit-keyframes slideOutTogglerRight {
+  0% {
+    right: var(--detailWidth);
+  }
+  100% {
+    right: 0px;
+  }
+}
+
+@keyframes slideOutTogglerRight {
+  0% {
+    right: var(--detailWidth);
+  }
+  100% {
+    right: 0px;
+  }
+}
+/*# sourceMappingURL=RevoCalendar.module.css.map */

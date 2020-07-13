@@ -1,0 +1,396 @@
+.revoCalendar {
+  --primaryColor: black;
+  --primaryColor50: #00000080;
+  --secondaryColor: white;
+  --accentColor: blue;
+  --animationSpeed: 300ms;
+  --sidebarWidth: 180px;
+  --detailWidth: 250px;
+  --minHeight: 0;
+
+  width: 100%;
+  display: flex;
+  position: relative;
+  overflow: hidden;
+  min-height: var(--minHeight);
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sidebar {
+    &.defaultOpen {
+      width: var(--sidebarWidth);
+      min-width: var(--sidebarWidth);
+      box-shadow: 0 0 10px #0004;
+    }
+    &.defaultClosed {
+      width: 0px;
+      min-width: 0px;
+    }
+    background: var(--primaryColor);
+    position: relative;
+    left: 0;
+    overflow: hidden;
+    z-index: 10;
+    .currentMonth {
+      background: var(--secondaryColor);
+      color: var(--primaryColor);
+    }
+    .yearSelect {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      color: var(--secondaryColor);
+      span {
+        font-size: 1.4rem;
+        padding: 10px;
+        color: var(--secondaryColor);
+      }
+      button {
+        background: none;
+        border: none;
+        width: 20px;
+      }
+    }
+    ul {
+      list-style: none;
+      padding-bottom: 1rem;
+      padding-left: 0;
+      button {
+        border: none;
+        background: none;
+        font-size: 1rem;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        text-align: left;
+        padding: 0.4rem 0.5rem;
+        color: var(--secondaryColor);
+        &:hover {
+          background: var(--secondaryColor);
+          color: var(--primaryColor);
+        }
+      }
+    }
+  }
+  .closeSidebar {
+    position: absolute;
+    top: 0;
+    height: 40px;
+    width: 40px;
+    border: none;
+    z-index: 10;
+    background: var(--primaryColor);
+    &.defaultOpen {
+      left: var(--sidebarWidth);
+      z-index: 15;
+    }
+    &.defaultClosed {
+      left: 0;
+    }
+  }
+  .inner {
+    padding: 1rem;
+    flex-grow: 1;
+    max-width: 100%;
+    .scrollInner {
+      overflow-x: scroll;
+    }
+    .monthName {
+      text-align: center;
+      border-bottom: 1px solid var(--accentColor);
+      margin-bottom: 1rem;
+      color: var(--primaryColor);
+    }
+    .dayNames {
+      text-align: center;
+      display: grid;
+      grid-template-columns: repeat(7, minmax(40px, 1fr));
+      margin-bottom: 1rem;
+    }
+    .days {
+      display: grid;
+      grid-template-columns: repeat(7, minmax(40px, 1fr));
+      .day {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 60px;
+        width: 100%;
+        margin: 5px 0;
+        & > button {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 4.5vw;
+          width: 4.5vw;
+          max-width: 60px;
+          border-radius: 50%;
+          max-height: 60px;
+          background: none;
+          border: none;
+          font-size: 1rem;
+          color: #333;
+          &:hover {
+            background: var(--primaryColor50) !important;
+          }
+        }
+      }
+      .today {
+        border: 2px solid var(--accentColor) !important;
+      }
+      .currentDay {
+        background: var(--primaryColor) !important;
+        color: var(--secondaryColor) !important;
+      }
+    }
+  }
+  .detail {
+    background: var(--primaryColor);
+    position: relative;
+    right: 0;
+    overflow: hidden;
+    z-index: 10;
+    &.defaultOpen {
+      width: var(--detailWidth);
+      min-width: var(--detailWidth);
+      box-shadow: 0 0 10px #0004;
+    }
+    &.defaultClosed {
+      width: 0px;
+      min-width: 0px;
+    }
+    .dateTitle {
+      color: white;
+      text-align: center;
+      font-size: 1.6rem;
+      padding: 0 1rem;
+      height: 100px;
+      z-index: 10;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .events {
+      display: flex;
+      gap: 0.6rem;
+      flex-direction: column;
+      align-items: center;
+      flex-direction: column;
+      overflow-y: scroll;
+      overflow-x: hidden;
+      max-height: 500px;
+      &::before {
+        content: '';
+      }
+      &::after {
+        content: ' ';
+        white-space: pre;
+        line-height: 0;
+      }
+      & > p {
+        padding: 0.8rem;
+        color: var(--secondaryColor);
+        font-size: 1.1rem;
+      }
+      .event {
+        width: 90%;
+        padding: 10px 15px;
+        border-radius: 20px;
+        background: var(--secondaryColor);
+        transition: box-shadow var(--animationSpeed) ease;
+
+        button {
+          border: none;
+          width: 100%;
+          height: 30px;
+          margin-top: 0.5rem;
+          border-radius: 30px;
+          background: var(--primaryColor);
+          color: var(--secondaryColor);
+          font-size: 0.8rem;
+        }
+        & > p {
+          font-size: 1.2rem;
+          text-align: center;
+          color: var(--primaryColor);
+          margin-bottom: 0.4rem;
+          font-weight: bold;
+        }
+        & > div {
+          display: flex;
+          gap: 1rem;
+          margin-bottom: 5px;
+          justify-content: space-around;
+
+          div {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            span {
+              font-size: 1rem;
+              font-weight: lighter;
+            }
+          }
+        }
+        &:hover {
+          box-shadow: 0 0 10px #0004;
+        }
+      }
+    }
+  }
+  .closeDetail {
+    position: absolute;
+    top: 0;
+    height: 40px;
+    width: 40px;
+    border: none;
+    z-index: 10;
+    background: var(--primaryColor);
+    &.defaultOpen {
+      right: var(--detailWidth);
+      z-index: 15;
+    }
+    &.defaultClosed {
+      right: 0;
+    }
+  }
+  .floating {
+    height: 100%;
+    position: absolute;
+  }
+}
+
+.slideInLeft {
+  animation: slideInLeft var(--animationSpeed);
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.slideOutLeft {
+  animation: slideOutLeft var(--animationSpeed);
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.slideInRight {
+  animation: slideInRight var(--animationSpeed);
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.slideOutRight {
+  animation: slideOutRight var(--animationSpeed);
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.sidebarTogglerSlideIn {
+  animation: slideInTogglerLeft var(--animationSpeed);
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.sidebarTogglerSlideOut {
+  animation: slideOutTogglerLeft var(--animationSpeed);
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.detailsTogglerSlideIn {
+  animation: slideInTogglerRight var(--animationSpeed);
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+.detailsTogglerSlideOut {
+  animation: slideOutTogglerRight var(--animationSpeed);
+  animation-timing-function: ease;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slideInLeft {
+  0% {
+    width: 0px;
+    min-width: 0px;
+  }
+  100% {
+    width: var(--sidebarWidth);
+    min-width: var(--sidebarWidth);
+  }
+}
+
+@keyframes slideOutLeft {
+  0% {
+    width: var(--sidebarWidth);
+    min-width: var(--sidebarWidth);
+  }
+  100% {
+    width: 0px;
+    min-width: 0px;
+  }
+}
+
+@keyframes slideInRight {
+  0% {
+    width: 0px;
+    min-width: 0px;
+  }
+  100% {
+    width: var(--detailWidth);
+    min-width: var(--detailWidth);
+  }
+}
+
+@keyframes slideOutRight {
+  0% {
+    width: var(--detailWidth);
+    min-width: var(--detailWidth);
+  }
+  100% {
+    width: 0px;
+    min-width: 0px;
+  }
+}
+
+@keyframes slideInTogglerLeft {
+  0% {
+    left: 0px;
+  }
+  100% {
+    left: var(--sidebarWidth);
+  }
+}
+
+@keyframes slideOutTogglerLeft {
+  0% {
+    left: var(--sidebarWidth);
+  }
+  100% {
+    left: 0px;
+  }
+}
+
+@keyframes slideInTogglerRight {
+  0% {
+    right: 0px;
+  }
+  100% {
+    right: var(--detailWidth);
+  }
+}
+
+@keyframes slideOutTogglerRight {
+  0% {
+    right: var(--detailWidth);
+  }
+  100% {
+    right: 0px;
+  }
+}
