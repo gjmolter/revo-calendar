@@ -1,8 +1,11 @@
 {
   "name": "revo-calendar",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "React Event Calendar Component",
-  "author": "gjmolter",
+  "author": {
+    "name": "Gabriel Molter",
+    "url": "https://gabrielmolter.com/"
+  },
   "license": "MIT",
   "repository": "gjmolter/revo-calendar",
   "main": "dist/index.js",
@@ -11,6 +14,15 @@
   "engines": {
     "node": ">=10"
   },
+  "homepage": "https://gjmolter.github.io/revo-calendar/",
+  "keywords": [
+    "event",
+    "calendar",
+    "modern",
+    "responsive",
+    "react",
+    "customizable"
+  ],
   "scripts": {
     "build": "microbundle-crl --no-compress --format modern,cjs",
     "start": "microbundle-crl watch --no-compress --format modern,cjs",
@@ -36,7 +48,6 @@
     "@types/react-dom": "^16.9.7",
     "@typescript-eslint/eslint-plugin": "^2.26.0",
     "@typescript-eslint/parser": "^2.26.0",
-    "microbundle-crl": "^0.13.10",
     "babel-eslint": "^10.0.3",
     "cross-env": "^7.0.2",
     "eslint": "^6.8.0",
@@ -50,11 +61,14 @@
     "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-standard": "^4.0.1",
     "gh-pages": "^2.2.0",
+    "identity-obj-proxy": "^3.0.0",
+    "microbundle-crl": "^0.13.10",
     "npm-run-all": "^4.1.5",
     "prettier": "^2.0.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "^3.4.1",
+    "sass": "^1.30.0",
     "typescript": "^3.7.5"
   },
   "files": [

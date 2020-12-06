@@ -1,7 +1,7 @@
 {
   "name": "revo-calendar-example",
   "homepage": ".",
-  "version": "0.0.0",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "start": "node ../node_modules/react-scripts/bin/react-scripts.js start",
@@ -16,18 +16,20 @@
     "@types/jest": "file:../node_modules/@types/jest",
     "@types/node": "file:../node_modules/@types/node",
     "@types/react": "file:../node_modules/@types/react",
+    "@types/react-color": "^3.0.4",
+    "@types/react-datepicker": "^3.1.2",
     "@types/react-dom": "file:../node_modules/@types/react-dom",
     "react": "file:../node_modules/react",
+    "react-color": "^2.19.3",
+    "react-datepicker": "^3.3.0",
     "react-dom": "file:../node_modules/react-dom",
+    "react-github-btn": "^1.2.0",
     "react-scripts": "file:../node_modules/react-scripts",
-    "typescript": "file:../node_modules/typescript",
-    "revo-calendar": "file:.."
+    "revo-calendar": "file:..",
+    "typescript": "file:../node_modules/typescript"
   },
   "devDependencies": {
     "@babel/plugin-syntax-object-rest-spread": "^7.8.3"
-  },
-  "eslintConfig": {
-    "extends": "react-app"
   },
   "browserslist": {
     "production": [
