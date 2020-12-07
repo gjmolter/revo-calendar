@@ -474,7 +474,7 @@ const RevoCalendar = ({
               )}
             </div>
             {showDelete === index && (
-              <button onClick={() => deleteEvent(index)}>Delete</button>
+              <button onClick={() => deleteEvent(index)}>{languages[lang].delete}</button>
             )}
           </div>
         )

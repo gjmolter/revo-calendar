@@ -41,7 +41,8 @@ const translations = {
     ],
     noEventForThisDay: 'No event for this day... so take a rest!',
     allDay: 'All day',
-    addEvent: 'Add event'
+    addEvent: 'Add event',
+    delete: 'Delete'
   },
   es: {
     days: [
@@ -85,7 +86,8 @@ const translations = {
     ],
     noEventForThisDay: 'Ningún evento para este día... ¡así que descanse!',
     allDay: 'Todo el dia',
-    addEvent: 'Añadir evento'
+    addEvent: 'Añadir evento',
+    delete: 'Eliminar'
   },
   de: {
     days: [
@@ -130,7 +132,8 @@ const translations = {
     noEventForThisDay:
       'Keine Veranstaltung für diesen Tag... also ruhen Sie sich aus!',
     allDay: 'Den ganzen Tag',
-    addEvent: 'Ereignis hinzufügen'
+    addEvent: 'Ereignis hinzufügen',
+    delete: 'Löschen'
   },
   pt: {
     days: [
@@ -174,7 +177,8 @@ const translations = {
     ],
     noEventForThisDay: 'Nenhum evento para este dia... então descanse!',
     allDay: 'Dia todo',
-    addEvent: 'Adicionar evento'
+    addEvent: 'Adicionar evento',
+    delete: 'Deletar'
   }
 }
 
