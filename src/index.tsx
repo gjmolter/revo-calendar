@@ -194,7 +194,15 @@ const RevoCalendar = ({
       }
     }
 
-    function ChevronButton({ angle, color, action }: {angle: number, color: string, action(): void}) {
+    function ChevronButton({
+      angle,
+      color,
+      action
+    }: {
+      angle: number
+      color: string
+      action(): void
+    }) {
       return (
         <button onClick={action}>
           <svg
@@ -278,7 +286,7 @@ const RevoCalendar = ({
     // GET LIST OF DAYS ON EACH MONTH ACCOUNTING FOR LEAP YEARS.
     const daysInMonths = helperFunctions.isLeapYear(currentMonth, currentYear)
 
-    let days = []
+    const days = []
     for (let index = 1; index <= daysInMonths[currentMonth]; index++) {
       var isToday = helperFunctions.isToday(index, currentMonth, currentYear)
       var highlight = isToday && highlightToday
@@ -297,7 +305,7 @@ const RevoCalendar = ({
         }
       }
 
-      let day = (
+      const day = (
         <button
           className={`${highlight ? styles.today : ''} ${
             index === currentDay ? styles.currentDay : ''
@@ -403,7 +411,7 @@ const RevoCalendar = ({
       }
     }
 
-    let eventDivs = []
+    const eventDivs = []
 
     for (let index = 0; index < events.length; index++) {
       var eventDate = new Date(events[index].date)
@@ -416,7 +424,7 @@ const RevoCalendar = ({
         helperFunctions.isValidDate(eventDate) &&
         tempDate.getTime() === selectedDate.getTime()
       ) {
-        let event = (
+        const event = (
           <div
             key={index}
             className={styles.event}
@@ -459,7 +467,7 @@ const RevoCalendar = ({
                     <path
                       fill={primaryColorRGB}
                       d={events[index].extra?.icon}
-                    ></path>
+                    />
                   </svg>
                   <span>{events[index].extra?.text}</span>
                 </div>
@@ -546,7 +554,10 @@ const RevoCalendar = ({
       <style>{`
         .${styles.revoCalendar} {
           --primaryColor: ${primaryColorRGB};
-          --primaryColor50: ${helperFunctions.getRGBAColorWithAlpha(primaryColorRGB, 0.5)};
+          --primaryColor50: ${helperFunctions.getRGBAColorWithAlpha(
+            primaryColorRGB,
+            0.5
+          )};
           --secondaryColor: ${secondaryColorRGB};
           --todayColor: ${todayColorRGB};
           --textColor: ${textColorRGBA};

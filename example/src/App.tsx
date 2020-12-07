@@ -308,7 +308,7 @@ function App() {
                     type='text'
                     value={newEventName}
                     onChange={(e) => setNewEventName(e.target.value)}
-                  ></input>
+                  />
                   ",
                 </pre>
                 <pre className='tab'>
@@ -351,7 +351,7 @@ function App() {
                     type='text'
                     value={newEventIcon}
                     onChange={(e) => setNewEventIcon(e.target.value)}
-                  ></input>
+                  />
                   ",
                 </pre>
                 <pre className='tab2'>
@@ -360,7 +360,7 @@ function App() {
                     type='text'
                     value={newEventText}
                     onChange={(e) => setNewEventText(e.target.value)}
-                  ></input>
+                  />
                   "
                 </pre>
                 <pre>{'}'}</pre>
@@ -375,7 +375,7 @@ function App() {
                 </div>
               </code>
             </div>
-            <div onClick={() => setShowAddEventModal(false)}></div>
+            <div onClick={() => setShowAddEventModal(false)} />
           </div>
         )}
         <p style={{ marginTop: '3rem' }}>
@@ -439,7 +439,7 @@ function App() {
                 <ChromePicker
                   color={primaryColor}
                   onChangeComplete={(c) => setPrimaryColor(c.hex)}
-                  disableAlpha={true}
+                  disableAlpha
                 />
               </div>
             )}
@@ -459,7 +459,7 @@ function App() {
                 <ChromePicker
                   color={secondaryColor}
                   onChangeComplete={(c) => setSecondaryColor(c.hex)}
-                  disableAlpha={true}
+                  disableAlpha
                 />
               </div>
             )}
@@ -479,7 +479,7 @@ function App() {
                 <ChromePicker
                   color={todayColor}
                   onChangeComplete={(c) => setTodayColor(c.hex)}
-                  disableAlpha={true}
+                  disableAlpha
                 />
               </div>
             )}
@@ -499,7 +499,7 @@ function App() {
                 <ChromePicker
                   color={textColor}
                   onChangeComplete={(c) => setTextColor(c.hex)}
-                  disableAlpha={true}
+                  disableAlpha
                 />
               </div>
             )}
@@ -519,7 +519,7 @@ function App() {
                 <ChromePicker
                   color={indicatorColor}
                   onChangeComplete={(c) => setIndicatorColor(c.hex)}
-                  disableAlpha={true}
+                  disableAlpha
                 />
               </div>
             )}
@@ -531,7 +531,7 @@ function App() {
               name='animationSpeed'
               onChange={(e) => setAnimationSpeed(parseInt(e.target.value))}
               value={animationSpeed}
-            ></input>
+            />
             <span style={{ marginLeft: '10px' }}>ms</span>
           </div>
           <div>
@@ -541,7 +541,7 @@ function App() {
               name='sidebarWidth'
               onChange={(e) => setSidebarWidth(parseInt(e.target.value))}
               value={sidebarWidth}
-            ></input>
+            />
             <span style={{ marginLeft: '10px' }}>px</span>
           </div>
           <div>
@@ -551,7 +551,7 @@ function App() {
               name='detailWidth'
               onChange={(e) => setDetailWidth(parseInt(e.target.value))}
               value={detailWidth}
-            ></input>
+            />
             <span style={{ marginLeft: '10px' }}>px</span>
           </div>
           <div>
@@ -678,8 +678,7 @@ function App() {
             </pre>
             <pre className='tab2'>
               borderRadius:
-              <span className='codeYellow'>"5px"</span>
-              {','}
+              <span className='codeYellow'>"5px"</span>,
             </pre>
             <pre className='tab2'>
               border:
@@ -695,33 +694,27 @@ function App() {
               {'}'}
             </pre>
             <pre className='tab'>
-              <span className='codeGreen'>lang</span>
-              {'='}
+              <span className='codeGreen'>lang</span>=
               <span className='codeYellow'>"{lang}"</span>
             </pre>
             <pre className='tab'>
-              <span className='codeGreen'>primaryColor</span>
-              {'='}
+              <span className='codeGreen'>primaryColor</span>=
               <span className='codeYellow'>"{primaryColor}"</span>
             </pre>
             <pre className='tab'>
-              <span className='codeGreen'>secondaryColor</span>
-              {'='}
+              <span className='codeGreen'>secondaryColor</span>=
               <span className='codeYellow'>"{secondaryColor}"</span>
             </pre>
             <pre className='tab'>
-              <span className='codeGreen'>todayColor</span>
-              {'='}
+              <span className='codeGreen'>todayColor</span>=
               <span className='codeYellow'>"{todayColor}"</span>
             </pre>
             <pre className='tab'>
-              <span className='codeGreen'>textColor</span>
-              {'='}
+              <span className='codeGreen'>textColor</span>=
               <span className='codeYellow'>"{textColor}"</span>
             </pre>
             <pre className='tab'>
-              <span className='codeGreen'>indicatorColor</span>
-              {'='}
+              <span className='codeGreen'>indicatorColor</span>=
               <span className='codeYellow'>"{indicatorColor}"</span>
             </pre>
             <pre className='tab'>
@@ -795,8 +788,7 @@ function App() {
               {'}'}
             </pre>
             <pre className='tab'>
-              <span className='codeGreen'>detailDateFormat</span>
-              {'='}
+              <span className='codeGreen'>detailDateFormat</span>=
               <span className='codeYellow'>"{detailDateFormat}"</span>
             </pre>
             <pre className='tab'>
