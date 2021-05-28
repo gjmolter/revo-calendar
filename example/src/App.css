@@ -36,7 +36,7 @@ header {
 }
 
 .header h1 {
-  font-family: 'Aladin', cursive;
+  font-family: "Aladin", cursive;
   color: white;
   font-size: 2.5rem;
   margin: 1rem;
@@ -53,7 +53,7 @@ button {
 h2 {
   text-align: center;
   font-size: 2.4rem;
-  font-family: 'Aladin', cursive;
+  font-family: "Aladin", cursive;
   padding-top: 120px;
   margin-top: -100px;
   margin-bottom: 2rem;
@@ -71,11 +71,11 @@ p a {
 }
 
 p span {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
   background: #292937;
   color: white;
-  padding: 1px 3px;
+  padding: 2px 4px;
   border-radius: 5px;
   font-size: 0.9rem;
 }
@@ -89,7 +89,7 @@ pre {
   align-items: center;
 }
 
-.react-datepicker-wrapper input[type='text'] {
+.react-datepicker-wrapper input[type="text"] {
   width: 80px !important;
   text-align: center;
   border-radius: 10px 0 0 10px !important;
@@ -100,7 +100,7 @@ pre {
 }
 
 .code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
 
@@ -115,7 +115,7 @@ pre {
   border-radius: 10px;
   border: 2px solid white;
   font-size: 1rem;
-  overflow: scroll;
+  overflow: hidden;
   box-shadow: 0 0 10px #0002;
 }
 
@@ -127,13 +127,13 @@ pre {
   margin-right: 10px;
 }
 
-.options input[type='checkbox'] {
+.options input[type="checkbox"] {
   width: 16px;
   height: 16px;
 }
 
-.options input[type='number'],
-.options input[type='text'],
+.options input[type="number"],
+.options input[type="text"],
 .timeDisplay {
   border: none;
   height: 24px;
@@ -154,11 +154,11 @@ pre {
   font-size: 0.9rem;
 }
 
-.options input[type='number'] {
+.options input[type="number"] {
   width: 60px;
 }
 
-.options input[type='text'] {
+.options input[type="text"] {
   width: 200px;
 }
 
