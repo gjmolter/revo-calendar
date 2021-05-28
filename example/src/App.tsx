@@ -203,7 +203,15 @@ function App() {
       <header>
         <div className="header">
           <h1>RevoCalendar</h1>
-          <div className="mobileMenu">MOBILE MENU</div>
+          <div className="mobileMenu">
+            <a
+              href="https://gabrielmolter.com"
+              target="_blank"
+              rel="noreferrer noopener"
+            >
+              Author
+            </a>
+          </div>
           <ul>
             <li>
               <a href="#gettingStarted">Getting Started</a>

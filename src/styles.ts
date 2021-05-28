@@ -196,8 +196,8 @@ export const DayButton = styled.button<DayButtonProps>`
   max-height: 55px;
   width: max(1rem, 5vw);
   height: max(1rem, 5vw);
-  min-width: 26px;
-  min-height: 26px;
+  min-width: 32px;
+  min-height: 32px;
   background: ${(props) =>
     props.current ? `${props.theme.primaryColor} !important` : "none"};
   border: ${(props) =>
