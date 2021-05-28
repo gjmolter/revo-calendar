@@ -26,17 +26,12 @@ yarn add revo-calendar
 ## Usage ✍️
 
 ```jsx
-import React, { Component } from 'react'
+//Import the component
+import RevoCalendar from "revo-calendar";
 
-//Import the component and the stylesheet
-import RevoCalendar from 'revo-calendar'
-import 'revo-calendar/dist/index.css'
-
-class Example extends Component {
-  render() {
-    return <RevoCalendar />
-  }
-}
+const Index = () => {
+  return <RevoCalendar {...props} />;
+};
 ```
 
 ## Available Props 🎛️
@@ -91,20 +86,19 @@ Example:
 ```js
 var events = [
   {
-    name: 'Buyout',
+    name: "Buyout",
     date: +new Date(),
-    allday: true
+    allday: true,
   },
   {
-    name: 'Reservation',
+    name: "Reservation",
     date: 1594422992000,
     extra: {
-      icon:
-        'M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09           4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z',
-      text: '7 People'
-    }
-  }
-]
+      icon: "M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09           4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z",
+      text: "7 People",
+    },
+  },
+];
 ```
 
 The example's `extra.icon` will render this: ![person icon](https://cdn-std.droplr.net/files/acc_519625/A2Wdsw)
@@ -118,16 +112,16 @@ Here is an example of the Esperanto language:
 ```js
 const translations = {
   esperanto: {
-    days: ['Dimanĉo', ...'Sabato'],
-    daysShort: ['Dim', ...'Sab'],
-    daysMin: ['Di', ...'Sa'],
-    months: ['Januaro', ...'Decembro'],
-    monthsShort: ['Jan', ...'Dec'],
-    noEventForThisDay: 'Neniu evento por ĉi tiu tago ... do ripozu!',
-    allDay: 'Tuta tago',
-    addEvent: 'Aldoni eventon'
-  }
-}
+    days: ["Dimanĉo", ..."Sabato"],
+    daysShort: ["Dim", ..."Sab"],
+    daysMin: ["Di", ..."Sa"],
+    months: ["Januaro", ..."Decembro"],
+    monthsShort: ["Jan", ..."Dec"],
+    noEventForThisDay: "Neniu evento por ĉi tiu tago ... do ripozu!",
+    allDay: "Tuta tago",
+    addEvent: "Aldoni eventon",
+  },
+};
 ```
 
 To render the calendar using custom `esperanto` language, pass the `translations` object and the key to `languages` and `lang` respectivelly.
@@ -135,7 +129,7 @@ To render the calendar using custom `esperanto` language, pass the `translations
 Example:
 
 ```jsx
-<RevoCalendar languages={translations} lang='esperanto' />
+<RevoCalendar languages={translations} lang="esperanto" />
 ```
 
 ### detailDateFormat Prop
