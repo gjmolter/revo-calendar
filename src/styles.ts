@@ -182,12 +182,8 @@ export const Day = styled.div<DayProps>`
   height: 60px;
   width: 100%;
   margin: 5px 0;
-  ${(props) =>
-    props.firstDay
-      ? css`
-          grid-column-start: props.firstOfMonth;
-        `
-      : ""}
+  grid-column-start: ${(props) =>
+    props.firstDay ? props.firstOfMonth : "auto"};
 `;
 
 export const DayButton = styled.button<DayButtonProps>`
