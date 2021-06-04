@@ -93,6 +93,7 @@ export const Sidebar = styled.div<SidebarProps>`
       background: none;
       border: none;
       width: 20px;
+      display: flex;
     }
   }
   ul {
@@ -144,6 +145,9 @@ export const CloseSidebar = styled.button<SidebarProps>`
   top: 0;
   height: 40px;
   width: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 0;
   border: none;
   z-index: 10;
@@ -414,6 +418,9 @@ export const CloseDetail = styled.button<CloseDetailProps>`
   border-radius: 0;
   border: none;
   z-index: 10;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background: ${(props) => props.theme.primaryColor};
   &.defaultOpen {
     right: ${(props) => props.theme.detailWidth};
