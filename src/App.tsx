@@ -426,6 +426,10 @@ function App() {
             <label htmlFor="es"> Spanish</label>
             <input type="radio" name="lang" value="de" id="de" />
             <label htmlFor="de"> German</label>
+            <input type="radio" name="lang" value="fr" id="fr" />
+            <label htmlFor="fr"> French</label>
+            <input type="radio" name="lang" value="ru" id="ru" />
+            <label htmlFor="ru"> Russian</label>
           </div>
           <div>
             <label>primaryColor: </label>
