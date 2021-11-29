@@ -2,7 +2,8 @@ name: Publish Demo to GitHub Pages
 
 on:
   push:
-    branches: [ demo ]
+    branches: 
+      - demo
 
 jobs:
   build:
