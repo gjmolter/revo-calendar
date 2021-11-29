@@ -122,8 +122,7 @@ function App() {
   const [onePanelAtATime, setOnePanelAtATime] = useState(false);
   const [allowDeleteEvent, setAllowDeleteEvent] = useState(true);
   const [allowAddEvent, setAllowAddEvent] = useState(true);
-  const [openDetailsOnDateSelection, setOpenDetailsOnDateSelection] =
-    useState(true);
+  const [openDetailsOnDateSelection, setOpenDetailsOnDateSelection] = useState(true);
   const [timeFormat24, setTimeFormat24] = useState(true);
   const [showAllDayLabel, setShowAllDayLabel] = useState(false);
   const [detailDateFormat, setDetailDateFormat] = useState("DD/MM/YYYY");
@@ -166,7 +165,7 @@ function App() {
     var newEvent = {
       name: newEventName,
       date: newEventDate,
-      allday: newEventAllDay,
+      allDay: newEventAllDay,
       extra: {
         icon: newEventIcon,
         text: newEventText
@@ -204,11 +203,7 @@ function App() {
         <div className="header">
           <h1>RevoCalendar</h1>
           <div className="mobileMenu">
-            <a
-              href="https://gabrielmolter.com"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
+            <a href="https://gabrielmolter.com" target="_blank" rel="noreferrer noopener">
               Author
             </a>
           </div>
@@ -220,11 +215,7 @@ function App() {
               <a href="#example">Live Example</a>
             </li>
             <li>
-              <a
-                href="https://gabrielmolter.com"
-                target="_blank"
-                rel="noreferrer noopener"
-              >
+              <a href="https://gabrielmolter.com" target="_blank" rel="noreferrer noopener">
                 Author
               </a>
             </li>
@@ -307,11 +298,7 @@ function App() {
                 </pre>
                 <pre className="tab">
                   name<label className="codePink">:</label> "
-                  <input
-                    type="text"
-                    value={newEventName}
-                    onChange={(e) => setNewEventName(e.target.value)}
-                  />
+                  <input type="text" value={newEventName} onChange={(e) => setNewEventName(e.target.value)} />
                   ",
                 </pre>
                 <pre className="tab">
@@ -326,13 +313,9 @@ function App() {
                     dateFormat="dd/MM/yyyy"
                   />
                   <label className="timeDisplay" htmlFor="datePicker">{`${
-                    newEventDate.getHours() <= 9
-                      ? "0" + newEventDate.getHours()
-                      : newEventDate.getHours()
+                    newEventDate.getHours() <= 9 ? "0" + newEventDate.getHours() : newEventDate.getHours()
                   }:${
-                    newEventDate.getMinutes() <= 9
-                      ? "0" + newEventDate.getMinutes()
-                      : newEventDate.getMinutes()
+                    newEventDate.getMinutes() <= 9 ? "0" + newEventDate.getMinutes() : newEventDate.getMinutes()
                   }`}</label>
                   , <span className="comment">{"/* DD/MM/YYYY */"}</span>
                 </pre>
@@ -350,29 +333,16 @@ function App() {
                 </pre>
                 <pre className="tab2">
                   icon<label className="codePink">:</label>"
-                  <input
-                    type="text"
-                    value={newEventIcon}
-                    onChange={(e) => setNewEventIcon(e.target.value)}
-                  />
+                  <input type="text" value={newEventIcon} onChange={(e) => setNewEventIcon(e.target.value)} />
                   ",
                 </pre>
                 <pre className="tab2">
                   text<label className="codePink">:</label>"
-                  <input
-                    type="text"
-                    value={newEventText}
-                    onChange={(e) => setNewEventText(e.target.value)}
-                  />
-                  "
+                  <input type="text" value={newEventText} onChange={(e) => setNewEventText(e.target.value)} />"
                 </pre>
                 <pre>{"}"}</pre>
                 <div className="addEvent">
-                  <button
-                    className="colorPickerBtn"
-                    disabled={newEventName === ""}
-                    onClick={addEvent}
-                  >
+                  <button className="colorPickerBtn" disabled={newEventName === ""} onClick={addEvent}>
                     addEvent()
                   </button>
                 </div>
@@ -382,20 +352,14 @@ function App() {
           </div>
         )}
         <p style={{ marginTop: "3rem" }}>
-          Before you start playing, please note that you won't be able to modify
-          the <span>date</span>, <span>languages</span>, <span>style</span>,{" "}
-          <span>className</span>, <span>addEvent</span>,{" "}
-          <span>deleteEvent</span>, <span>detailDefault</span>,{" "}
-          <span>sidebarDefault</span>,<span>dateSelected</span> and{" "}
-          <span>eventSelected</span> props in this demo.
+          Before you start playing, please note that you won't be able to modify the <span>date</span>,{" "}
+          <span>languages</span>, <span>style</span>, <span>className</span>, <span>addEvent</span>,{" "}
+          <span>deleteEvent</span>, <span>detailDefault</span>, <span>sidebarDefault</span>,<span>dateSelected</span>{" "}
+          and <span>eventSelected</span> props in this demo.
         </p>
         <p>
           For detailed explanations on all available props, check the{" "}
-          <a
-            href="https://github.com/gjmolter/revo-calendar"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
+          <a href="https://github.com/gjmolter/revo-calendar" target="_blank" rel="noreferrer noopener">
             README on GitHub
           </a>
         </p>
@@ -433,101 +397,56 @@ function App() {
           </div>
           <div>
             <label>primaryColor: </label>
-            <button
-              onClick={() =>
-                setDisplayColorPicker(displayColorPicker === 1 ? 0 : 1)
-              }
-              className="colorPickerBtn"
-            >
+            <button onClick={() => setDisplayColorPicker(displayColorPicker === 1 ? 0 : 1)} className="colorPickerBtn">
               {displayColorPicker === 1 ? "Close" : "Pick Color"}
             </button>
             {displayColorPicker === 1 && (
               <div className="pickerContainer">
-                <ChromePicker
-                  color={primaryColor}
-                  onChangeComplete={(c) => setPrimaryColor(c.hex)}
-                  disableAlpha
-                />
+                <ChromePicker color={primaryColor} onChangeComplete={(c) => setPrimaryColor(c.hex)} disableAlpha />
               </div>
             )}
           </div>
           <div>
             <label>secondaryColor: </label>
-            <button
-              onClick={() =>
-                setDisplayColorPicker(displayColorPicker === 2 ? 0 : 2)
-              }
-              className="colorPickerBtn"
-            >
+            <button onClick={() => setDisplayColorPicker(displayColorPicker === 2 ? 0 : 2)} className="colorPickerBtn">
               {displayColorPicker === 2 ? "Close" : "Pick Color"}
             </button>
             {displayColorPicker === 2 && (
               <div className="pickerContainer">
-                <ChromePicker
-                  color={secondaryColor}
-                  onChangeComplete={(c) => setSecondaryColor(c.hex)}
-                  disableAlpha
-                />
+                <ChromePicker color={secondaryColor} onChangeComplete={(c) => setSecondaryColor(c.hex)} disableAlpha />
               </div>
             )}
           </div>
           <div>
             <label>todayColor: </label>
-            <button
-              onClick={() =>
-                setDisplayColorPicker(displayColorPicker === 3 ? 0 : 3)
-              }
-              className="colorPickerBtn"
-            >
+            <button onClick={() => setDisplayColorPicker(displayColorPicker === 3 ? 0 : 3)} className="colorPickerBtn">
               {displayColorPicker === 3 ? "Close" : "Pick Color"}
             </button>
             {displayColorPicker === 3 && (
               <div className="pickerContainer">
-                <ChromePicker
-                  color={todayColor}
-                  onChangeComplete={(c) => setTodayColor(c.hex)}
-                  disableAlpha
-                />
+                <ChromePicker color={todayColor} onChangeComplete={(c) => setTodayColor(c.hex)} disableAlpha />
               </div>
             )}
           </div>
           <div>
             <label>textColor: </label>
-            <button
-              onClick={() =>
-                setDisplayColorPicker(displayColorPicker === 4 ? 0 : 4)
-              }
-              className="colorPickerBtn"
-            >
+            <button onClick={() => setDisplayColorPicker(displayColorPicker === 4 ? 0 : 4)} className="colorPickerBtn">
               {displayColorPicker === 4 ? "Close" : "Pick Color"}
             </button>
             {displayColorPicker === 4 && (
               <div className="pickerContainer">
-                <ChromePicker
-                  color={textColor}
-                  onChangeComplete={(c) => setTextColor(c.hex)}
-                  disableAlpha
-                />
+                <ChromePicker color={textColor} onChangeComplete={(c) => setTextColor(c.hex)} disableAlpha />
               </div>
             )}
           </div>
           <div>
             <label>indicatorColor: </label>
-            <button
-              onClick={() =>
-                setDisplayColorPicker(displayColorPicker === 5 ? 0 : 5)
-              }
-              className="colorPickerBtn"
-            >
+            <button onClick={() => setDisplayColorPicker(displayColorPicker === 5 ? 0 : 5)} className="colorPickerBtn">
               {displayColorPicker === 5 ? "Close" : "Pick Color"}
             </button>
             {displayColorPicker === 5 && (
               <div className="pickerContainer">
-                <ChromePicker
-                  color={indicatorColor}
-                  onChangeComplete={(c) => setIndicatorColor(c.hex)}
-                  disableAlpha
-                />
+                <ChromePicker color={indicatorColor} onChangeComplete={(c) => setIndicatorColor(c.hex)} disableAlpha />
               </div>
             )}
           </div>
@@ -617,9 +536,7 @@ function App() {
             />
           </div>
           <div>
-            <label htmlFor="openDetailsOnDateSelection">
-              openDetailsOnDateSelection:{" "}
-            </label>
+            <label htmlFor="openDetailsOnDateSelection">openDetailsOnDateSelection: </label>
             <input
               type="checkbox"
               name="openDetailsOnDateSelection"
@@ -664,8 +581,7 @@ function App() {
           </div>
         </div>
         <p>
-          Current coponent's JSX code (Some of these could be removed, if it
-          wouldn't change the component's defaults):
+          Current coponent's JSX code (Some of these could be removed, if it wouldn't change the component's defaults):
         </p>
         <div className="code">
           <code>
@@ -699,28 +615,22 @@ function App() {
               {"}"}
             </pre>
             <pre className="tab">
-              <span className="codeGreen">lang</span>=
-              <span className="codeYellow">"{lang}"</span>
+              <span className="codeGreen">lang</span>=<span className="codeYellow">"{lang}"</span>
             </pre>
             <pre className="tab">
-              <span className="codeGreen">primaryColor</span>=
-              <span className="codeYellow">"{primaryColor}"</span>
+              <span className="codeGreen">primaryColor</span>=<span className="codeYellow">"{primaryColor}"</span>
             </pre>
             <pre className="tab">
-              <span className="codeGreen">secondaryColor</span>=
-              <span className="codeYellow">"{secondaryColor}"</span>
+              <span className="codeGreen">secondaryColor</span>=<span className="codeYellow">"{secondaryColor}"</span>
             </pre>
             <pre className="tab">
-              <span className="codeGreen">todayColor</span>=
-              <span className="codeYellow">"{todayColor}"</span>
+              <span className="codeGreen">todayColor</span>=<span className="codeYellow">"{todayColor}"</span>
             </pre>
             <pre className="tab">
-              <span className="codeGreen">textColor</span>=
-              <span className="codeYellow">"{textColor}"</span>
+              <span className="codeGreen">textColor</span>=<span className="codeYellow">"{textColor}"</span>
             </pre>
             <pre className="tab">
-              <span className="codeGreen">indicatorColor</span>=
-              <span className="codeYellow">"{indicatorColor}"</span>
+              <span className="codeGreen">indicatorColor</span>=<span className="codeYellow">"{indicatorColor}"</span>
             </pre>
             <pre className="tab">
               <span className="codeGreen">animationSpeed</span>
@@ -749,9 +659,7 @@ function App() {
             <pre className="tab">
               <span className="codeGreen">showSidebarToggler</span>
               {"={"}
-              <span className="codePurple">
-                {showSidebarToggler.toString()}
-              </span>
+              <span className="codePurple">{showSidebarToggler.toString()}</span>
               {"}"}
             </pre>
             <pre className="tab">
@@ -775,9 +683,7 @@ function App() {
             <pre className="tab">
               <span className="codeGreen">openDetailsOnDateSelection</span>
               {"={"}
-              <span className="codePurple">
-                {openDetailsOnDateSelection.toString()}
-              </span>
+              <span className="codePurple">{openDetailsOnDateSelection.toString()}</span>
               {"}"}
             </pre>
             <pre className="tab">
@@ -812,38 +718,22 @@ function App() {
           </code>
         </div>
         <p>
-          If you're curious on what{" "}
-          <span className="codeGreen">deleteEvent</span> or{" "}
+          If you're curious on what <span className="codeGreen">deleteEvent</span> or{" "}
           <span className="codeGreen">addEvent</span> functions do or what the{" "}
-          <span className="codePurple">eventList</span> variable looks like,
-          check the DevTools Console!
+          <span className="codePurple">eventList</span> variable looks like, check the DevTools Console!
         </p>
       </div>
       <footer>
-        <p>
-          If you find this usefull and it has saved you some time, please
-          consider
-        </p>
+        <p>If you find this usefull and it has saved you some time, please consider</p>
         <div className="bmc">
-          <a
-            target="_blank"
-            rel="noreferrer noopener"
-            href="https://www.buymeacoffee.com/gjmolter"
-          >
-            <img
-              src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg"
-              alt="Buying me a Coffee"
-            />
+          <a target="_blank" rel="noreferrer noopener" href="https://www.buymeacoffee.com/gjmolter">
+            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buying me a Coffee" />
             <span>Buying me a Coffee</span>
           </a>
         </div>
         <p>
           Also, feel free to contribute with this project on{" "}
-          <a
-            href="https://github.com/gjmolter/revo-calendar"
-            target="_blank"
-            rel="noreferrer noopener"
-          >
+          <a href="https://github.com/gjmolter/revo-calendar" target="_blank" rel="noreferrer noopener">
             GitHub
           </a>
         </p>
