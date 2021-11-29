@@ -176,9 +176,11 @@ function App() {
     setEvents([...temp]);`;
 
     console.log(
-      `%cfunction %cdeleteEvent %c() {\n`,
+      `%cfunction %cdeleteEvent %c(%ci%c) {\n`,
       "color: #f777c9",
       "color: #67fd6e",
+      "color: #D7D7D7",
+      "color: #F99E71",
       "color: #D7D7D7",
       deleteEventFunction,
       `\n}`
