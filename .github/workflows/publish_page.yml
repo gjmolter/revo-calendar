@@ -24,10 +24,8 @@ jobs:
         run: npm run build     
 
       - name: Deploy
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "revocalendar+github-actions[bot]@users.noreply.github.com"
-
-          git add -A
-          git commit -m "🚀 update demo site"
-          git push origin gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build
+          publish_branch: gh-pages
