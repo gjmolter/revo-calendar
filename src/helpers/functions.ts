@@ -15,7 +15,7 @@ const helperFunctions = {
     var today = new Date();
     return y === today.getFullYear() && m === today.getMonth() && d === today.getDate();
   },
-  decomposeRGBA: function (color: string): number[] | null {
+  decomposeRGBA: function (color: string | null): number[] | null {
     if (!color) return null;
     if (color.toLowerCase() === "transparent") return [0, 0, 0, 0];
     if (color[0] === "#") {

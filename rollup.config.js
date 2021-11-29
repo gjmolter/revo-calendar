@@ -11,11 +11,11 @@ export default [
       exports: "auto",
       sourcemap: false,
     },
-    external: ["react", "styled-components", /@babel\/runtime/],
+    external: ["react", "styled-components", /@babel\/runtime/, "react/jsx-runtime"],
     plugins: [
       typescript(),
       babel({
-        exclude: ["node_modules/**", "example/**"],
+        exclude: ["node_modules/**", "example/**", "__tests__/**"],
         plugins: ["@babel/transform-runtime", "babel-plugin-styled-components"],
         babelHelpers: "runtime",
       }),
