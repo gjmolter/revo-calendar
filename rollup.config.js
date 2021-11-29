@@ -7,7 +7,7 @@ export default [
     input: "src/index.tsx",
     output: {
       dir: "dist",
-      format: "esm",
+      format: "cjs",
       exports: "auto",
       sourcemap: false,
     },
