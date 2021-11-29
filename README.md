@@ -1,9 +1,9 @@
 # revo-calendar
 
-[![bundle size][bundlephobia-image]][bundlephobia-url]
+![npm](https://img.shields.io/npm/dt/revo-calendar?style=flat-square)
+![NPM](https://img.shields.io/npm/l/revo-calendar?style=flat-square)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/revo-calendar?style=flat-square)
 
-[bundlephobia-url]: https://bundlephobia.com/result?p=revo-calendar
-[bundlephobia-image]: https://badgen.net/bundlephobia/minzip/revo-calendar
 
 A modern-looking React Event Calendar component.
 
@@ -60,7 +60,7 @@ const Index = () => {
 | openDetailsOnDateSelection | bool      | `true`                                            | If `true`, will open right panel when date is selected                                                                                                       | `true` or `false`                                                                         |
 | timeFormat24               | bool      | `true`                                            | If `true`, will display dates in 24H format instead of 12 (21:41 instead of 9:41 PM)                                                                         | `true` or `false`                                                                         |
 | detailDateFormat           | string    | `'DD/MM/YYYY'`                                    | The way that current selected date will be displayed on right panel                                                                                          | Any string. See details below                                                             |
-| languages                  | object    | translation object with `en`, `pt`, `es` and `de` | If the current supported languages are not enough or you want to modify one of the translations, you can add your own translations object. See details below |
+| languages                  | object    | translation object with `en`, `pt`, `es`, `fr`, `ru` and `de` | If the current supported languages are not enough or you want to modify one of the translations, you can add your own translations object. See details below |
 | dateSelected               | function  | `date => {}`                                      | Use this function to get current selected date on your parent component                                                                                      | Any function that receives an object with `day`, `month` and `year` keys                  |
 | eventSelected              | function  | `index => {}`                                     | Use this function to get clicked event's index                                                                                                               | Any function that receives a `number` parameter (event index on `events` array)           |
 | allowDeleteEvent           | bool      | `false`                                           | If `true`, will display delete button when event is clicked                                                                                                  | `true` or `false`                                                                         |
@@ -121,6 +121,11 @@ const translations = {
     allDay: "Tuta tago",
     addEvent: "Aldoni eventon",
     delete: "Forigi",
+    eventTime: "Tempo de evento",
+    previousYear: "Pasintjare",
+    nextYear: "Venonta jaro",
+    toggleSidebar: "Baskulu flanka kolumno",
+    toggleDetails: "Ŝaltu Detalojn",
   },
 };
 ```
