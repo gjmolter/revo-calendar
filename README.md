@@ -78,7 +78,7 @@ Event object:
 | ------ | -------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name   | string         | ✔️        | Event name                                                                                                                                                                    |
 | date   | unix timestamp | ✔️        | 13 character timestamp. Can be obtained from adding operator `+` before JS `Date` object.                                                                                     |
-| allday | bool           |           | If `true`, will ignore `Date` object's time and show `allDay` string from current language's translation object                                                               |
+| allDay | bool           |           | If `true`, will ignore `Date` object's time and show `allDay` string from current language's translation object                                                               |
 | extra  | object         |           | If exists, will add one extra event information next to time. The object needs to contain strings: `icon` and `text`. `icon` will be passed as an `svg` `path` `d` parameter. |
 
 Example:
@@ -88,7 +88,7 @@ var events = [
   {
     name: "Buyout",
     date: +new Date(),
-    allday: true,
+    allDay: true,
   },
   {
     name: "Reservation",
@@ -120,6 +120,7 @@ const translations = {
     noEventForThisDay: "Neniu evento por ĉi tiu tago ... do ripozu!",
     allDay: "Tuta tago",
     addEvent: "Aldoni eventon",
+    delete: "Forigi",
   },
 };
 ```
