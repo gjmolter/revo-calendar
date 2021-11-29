@@ -16,6 +16,7 @@ exports[`Calendar component renders correctly using the passed props 1`] = `
   >
     <div>
       <button
+        aria-label="Previous year"
         onClick={[Function]}
       >
         <svg
@@ -48,6 +49,7 @@ exports[`Calendar component renders correctly using the passed props 1`] = `
         1997
       </span>
       <button
+        aria-label="Next year"
         onClick={[Function]}
       >
         <svg
@@ -179,6 +181,7 @@ exports[`Calendar component renders correctly using the passed props 1`] = `
     </div>
   </div>
   <button
+    aria-label="Toggle sidebar"
     className="sc-hKwDye dKCMjB"
     onClick={[Function]}
   >
@@ -604,6 +607,7 @@ exports[`Calendar component renders correctly using the passed props 1`] = `
       <div
         className="sc-iCfMLu bRDHdJ"
         onClick={[Function]}
+        role="button"
       >
         <p>
           Test Event
@@ -629,6 +633,7 @@ exports[`Calendar component renders correctly using the passed props 1`] = `
     </div>
   </div>
   <button
+    aria-label="Toggle details"
     className="sc-pVTFL ma-DLr"
     onClick={[Function]}
   >
@@ -657,6 +662,7 @@ exports[`Calendar renders in other languages 1`] = `
   >
     <div>
       <button
+        aria-label="Ano anterior"
         onClick={[Function]}
       >
         <svg
@@ -689,6 +695,7 @@ exports[`Calendar renders in other languages 1`] = `
         1997
       </span>
       <button
+        aria-label="Próximo ano"
         onClick={[Function]}
       >
         <svg
@@ -820,6 +827,7 @@ exports[`Calendar renders in other languages 1`] = `
     </div>
   </div>
   <button
+    aria-label="Alternar barra lateral"
     className="sc-hKwDye dKCMjB"
     onClick={[Function]}
   >
@@ -1240,6 +1248,7 @@ exports[`Calendar renders in other languages 1`] = `
       <div
         className="sc-iCfMLu hICFBH"
         onClick={[Function]}
+        role="button"
       >
         <p>
           Test Event
@@ -1265,6 +1274,7 @@ exports[`Calendar renders in other languages 1`] = `
     </div>
   </div>
   <button
+    aria-label="Alternar detalhes"
     className="sc-pVTFL ma-DLr"
     onClick={[Function]}
   >
