@@ -1,10 +1,10 @@
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import helperFunctions from "./helpers/functions";
 import translations from "./helpers/translations";
 
 import { Props } from "./typings";
-import { CHEVRON_ICON_SVG, CLOCK_ICON_SVG, SIDEBAR_ICON_SVG } from "./helpers/consts";
+import { CHEVRON_ICON_SVG, CLOCK_ICON_SVG, DETAILS_ICON_SVG, SIDEBAR_ICON_SVG } from "./helpers/consts";
 
 import { ThemeProvider } from "styled-components";
 import {
@@ -43,8 +43,8 @@ const RevoCalendar = ({
   showSidebarToggler = true,
   sidebarDefault = true,
   onePanelAtATime = false,
-  allowDeleteEvent = true,
-  allowAddEvent = true,
+  allowDeleteEvent = false,
+  allowAddEvent = false,
   openDetailsOnDateSelection = true,
   timeFormat24 = true,
   showAllDayLabel = false,
@@ -74,7 +74,7 @@ const RevoCalendar = ({
           setSize(calendarRef.current.offsetWidth);
         }
       }
-      window.addEventListener("resize", updateSize);
+      if (typeof window !== "undefined") window.addEventListener("resize", updateSize);
       updateSize();
       return () => window.removeEventListener("resize", updateSize);
     }, [calendarRef.current]);
@@ -155,9 +155,19 @@ const RevoCalendar = ({
       }
     }
 
-    function ChevronButton({ angle, color, action }: { angle: number; color: string; action(): void }) {
+    function ChevronButton({
+      angle,
+      color,
+      action,
+      ariaLabel,
+    }: {
+      angle: number;
+      color: string;
+      action(): void;
+      ariaLabel: string;
+    }) {
       return (
-        <button onClick={action}>
+        <button onClick={action} aria-label={ariaLabel}>
           <svg
             aria-hidden="true"
             focusable="false"
@@ -183,9 +193,19 @@ const RevoCalendar = ({
           onAnimationEnd={animationEnd}
         >
           <div>
-            <ChevronButton angle={90} color={secondaryColorRGB} action={prevYear} />
+            <ChevronButton
+              angle={90}
+              color={secondaryColorRGB}
+              action={prevYear}
+              ariaLabel={languages[lang].previousYear}
+            />
             <span>{currentYear}</span>
-            <ChevronButton angle={270} color={secondaryColorRGB} action={nextYear} />
+            <ChevronButton
+              angle={270}
+              color={secondaryColorRGB}
+              action={nextYear}
+              ariaLabel={languages[lang].nextYear}
+            />
           </div>
           <div>
             <ul>
@@ -207,6 +227,7 @@ const RevoCalendar = ({
             animatingIn={animatingSidebar === 1}
             animatingOut={animatingSidebar === -1}
             sidebarOpen={sidebarOpen}
+            aria-label={languages[lang].toggleSidebar}
           >
             <svg width="24" height="24" viewBox="0 0 24 24">
               <path fill={secondaryColorRGB} d={SIDEBAR_ICON_SVG} />
@@ -219,7 +240,7 @@ const RevoCalendar = ({
 
   function CalendarInner() {
     // GET LIST OF DAYS ON EACH MONTH ACCOUNTING FOR LEAP YEARS.
-    const daysInMonths = helperFunctions.isLeapYear(currentMonth, currentYear);
+    const daysInMonths = helperFunctions.isLeapYear(currentYear);
 
     const days = [];
     for (let index = 1; index <= daysInMonths[currentMonth]; index++) {
@@ -344,14 +365,14 @@ const RevoCalendar = ({
 
       if (helperFunctions.isValidDate(eventDate) && tempDate.getTime() === selectedDate.getTime()) {
         const event = (
-          <Event key={index} onClick={() => toggleDeleteButton(index)}>
+          <Event key={index} onClick={() => toggleDeleteButton(index)} role="button">
             <p>{events[index].name}</p>
             <div>
               {events[index].allDay ? (
                 <>
                   {showAllDayLabel && (
-                    <div>
-                      <svg width="20" height="20" viewBox="0 0 24 24">
+                    <div aria-label={languages[lang].eventTime}>
+                      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true">
                         <path fill={primaryColorRGB} d={CLOCK_ICON_SVG} />
                       </svg>
                       <span>{languages[lang].allDay}</span>
@@ -416,9 +437,10 @@ const RevoCalendar = ({
             animatingIn={animatingDetail === 1}
             animatingOut={animatingDetail === -1}
             detailsOpen={detailsOpen}
+            aria-label={languages[lang].toggleDetails}
           >
             <svg width="24" height="24" viewBox="0 0 24 24">
-              <path fill={secondaryColorRGB} d="M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z" />
+              <path fill={secondaryColorRGB} d={DETAILS_ICON_SVG} />
             </svg>
           </CloseDetail>
         )}

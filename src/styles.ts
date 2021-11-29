@@ -1,12 +1,8 @@
+/* istanbul ignore file */
+//Ignoring jest coverage on this file
+
 import styled, { css, keyframes } from "styled-components";
-import {
-  CloseDetailProps,
-  DayButtonProps,
-  DayProps,
-  DetailsProps,
-  MonthButtonProps,
-  SidebarProps,
-} from "./typings";
+import { CloseDetailProps, DayButtonProps, DayProps, DetailsProps, MonthButtonProps, SidebarProps } from "./typings";
 
 //Animations
 const slide = (w: string, inOut: boolean) => keyframes`
@@ -104,8 +100,7 @@ export const Sidebar = styled.div<SidebarProps>`
   ${(props) =>
     props.animatingIn
       ? css`
-          animation: ${slide(props.theme.sidebarWidth, true)}
-            ${(props) => props.theme.animationSpeed};
+          animation: ${slide(props.theme.sidebarWidth, true)} ${(props) => props.theme.animationSpeed};
           animation-timing-function: ease;
           animation-fill-mode: forwards;
         `
@@ -113,8 +108,7 @@ export const Sidebar = styled.div<SidebarProps>`
   ${(props) =>
     props.animatingOut
       ? css`
-          animation: ${slide(props.theme.sidebarWidth, false)}
-            ${(props) => props.theme.animationSpeed};
+          animation: ${slide(props.theme.sidebarWidth, false)} ${(props) => props.theme.animationSpeed};
           animation-timing-function: ease;
           animation-fill-mode: forwards;
         `
@@ -123,16 +117,14 @@ export const Sidebar = styled.div<SidebarProps>`
 
 export const MonthButton = styled.button<MonthButtonProps>`
   border: none;
-  background: ${(props) =>
-    props.current ? props.theme.secondaryColor : "none"};
+  background: ${(props) => (props.current ? props.theme.secondaryColor : "none")};
   font-size: 1rem;
   display: inline-block;
   width: 100%;
   height: 100%;
   text-align: left;
   padding: 0.4rem 0.5rem;
-  color: ${(props) =>
-    props.current ? props.theme.primaryColor : props.theme.secondaryColor};
+  color: ${(props) => (props.current ? props.theme.primaryColor : props.theme.secondaryColor)};
   border-radius: 0;
   &:hover {
     background: ${(props) => props.theme.secondaryColor};
@@ -158,8 +150,7 @@ export const CloseSidebar = styled.button<SidebarProps>`
   ${(props) =>
     props.animatingIn
       ? css`
-          animation: ${slideToggler(props.theme.sidebarWidth, "left", true)}
-            ${(props) => props.theme.animationSpeed};
+          animation: ${slideToggler(props.theme.sidebarWidth, "left", true)} ${(props) => props.theme.animationSpeed};
           animation-timing-function: ease;
           animation-fill-mode: forwards;
         `
@@ -167,8 +158,7 @@ export const CloseSidebar = styled.button<SidebarProps>`
   ${(props) =>
     props.animatingOut
       ? css`
-          animation: ${slideToggler(props.theme.sidebarWidth, "left", false)}
-            ${(props) => props.theme.animationSpeed};
+          animation: ${slideToggler(props.theme.sidebarWidth, "left", false)} ${(props) => props.theme.animationSpeed};
           animation-timing-function: ease;
           animation-fill-mode: forwards;
         `
@@ -182,8 +172,7 @@ export const Day = styled.div<DayProps>`
   height: 60px;
   width: 100%;
   margin: 5px 0;
-  grid-column-start: ${(props) =>
-    props.firstDay ? props.firstOfMonth : "auto"};
+  grid-column-start: ${(props) => (props.firstDay ? props.firstOfMonth : "auto")};
 `;
 
 export const DayButton = styled.button<DayButtonProps>`
@@ -198,15 +187,10 @@ export const DayButton = styled.button<DayButtonProps>`
   height: max(1rem, 5vw);
   min-width: 32px;
   min-height: 32px;
-  background: ${(props) =>
-    props.current ? `${props.theme.primaryColor} !important` : "none"};
-  border: ${(props) =>
-    props.today ? `2px solid ${props.theme.todayColor} !important` : "none"};
+  background: ${(props) => (props.current ? `${props.theme.primaryColor} !important` : "none")};
+  border: ${(props) => (props.today ? `2px solid ${props.theme.todayColor} !important` : "none")};
   font-size: min(1rem, 5vw);
-  color: ${(props) =>
-    props.current
-      ? `${props.theme.secondaryColor} !important`
-      : props.theme.textColor};
+  color: ${(props) => (props.current ? `${props.theme.secondaryColor} !important` : props.theme.textColor)};
   position: relative;
   &:hover {
     background: ${(props) => props.theme.primaryColor50} !important;
@@ -381,8 +365,7 @@ export const Details = styled.div<DetailsProps>`
   ${(props) =>
     props.animatingIn
       ? css`
-          animation: ${slide(props.theme.detailWidth, true)}
-            ${(props) => props.theme.animationSpeed};
+          animation: ${slide(props.theme.detailWidth, true)} ${(props) => props.theme.animationSpeed};
           animation-timing-function: ease;
           animation-fill-mode: forwards;
         `
@@ -390,8 +373,7 @@ export const Details = styled.div<DetailsProps>`
   ${(props) =>
     props.animatingOut
       ? css`
-          animation: ${slide(props.theme.detailWidth, false)}
-            ${(props) => props.theme.animationSpeed};
+          animation: ${slide(props.theme.detailWidth, false)} ${(props) => props.theme.animationSpeed};
           animation-timing-function: ease;
           animation-fill-mode: forwards;
         `
@@ -432,8 +414,7 @@ export const CloseDetail = styled.button<CloseDetailProps>`
   ${(props) =>
     props.animatingIn
       ? css`
-          animation: ${slideToggler(props.theme.detailWidth, "right", true)}
-            ${(props) => props.theme.animationSpeed};
+          animation: ${slideToggler(props.theme.detailWidth, "right", true)} ${(props) => props.theme.animationSpeed};
           animation-timing-function: ease;
           animation-fill-mode: forwards;
         `
@@ -441,8 +422,7 @@ export const CloseDetail = styled.button<CloseDetailProps>`
   ${(props) =>
     props.animatingOut
       ? css`
-          animation: ${slideToggler(props.theme.detailWidth, "right", false)}
-            ${(props) => props.theme.animationSpeed};
+          animation: ${slideToggler(props.theme.detailWidth, "right", false)} ${(props) => props.theme.animationSpeed};
           animation-timing-function: ease;
           animation-fill-mode: forwards;
         `

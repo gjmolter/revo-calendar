@@ -1,4 +1,5 @@
-example/
+coverage/
+__tests__/
 
 # misc
 .DS_Store
