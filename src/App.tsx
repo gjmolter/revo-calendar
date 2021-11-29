@@ -15,7 +15,7 @@ const thermometerIcon =
 
 function App() {
   var reso1 = new Date();
-  reso1.setHours(17, 2, 0);
+  reso1.setHours(17, 0, 0);
 
   var reso2 = new Date();
   reso2.setHours(18, 15, 0);
