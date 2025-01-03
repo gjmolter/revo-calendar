@@ -1,10 +1,7 @@
-/* istanbul ignore file */
-//Ignoring jest coverage on this file
-
 import styled, { css, keyframes } from "styled-components";
-import { CloseDetailProps, DayButtonProps, DayProps, DetailsProps, MonthButtonProps, SidebarProps } from "./typings";
+import { CloseDetailProps, DayProps, DetailsProps, MonthButtonProps, SidebarProps } from "./typings";
 
-//Animations
+// Animations
 const slide = (w: string, inOut: boolean) => keyframes`
     from {
       width: ${inOut ? "0px" : w};
@@ -15,33 +12,23 @@ const slide = (w: string, inOut: boolean) => keyframes`
       min-width: ${inOut ? w : "0px"};
     }
 `;
+
 const slideToggler = (v: string, lr: string, inOut: boolean) => keyframes`
     from {
-        ${
-          lr === "left"
-            ? `
-        left: ${inOut ? "0px" : v};
-        `
-            : `
-        right: ${inOut ? "0px" : v};
-        `
+        ${lr === "left"
+          ? `left: ${inOut ? "0px" : v};`
+          : `right: ${inOut ? "0px" : v};`
         }
     }
     to {
-        ${
-          lr === "left"
-            ? `
-        left: ${inOut ? v : "0px"};
-        `
-            : `
-        right: ${inOut ? v : "0px"};
-        `
+        ${lr === "left"
+          ? `left: ${inOut ? v : "0px"};`
+          : `right: ${inOut ? v : "0px"};`
         }
     }
-  `;
+`;
 
-//Components
-
+// Components
 export const Calendar = styled.div`
   width: 100%;
   display: flex;
@@ -74,17 +61,20 @@ export const Sidebar = styled.div<SidebarProps>`
   left: 0;
   overflow: hidden;
   z-index: 12;
+  
   & > div:first-of-type {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 1rem;
     color: ${(props) => props.theme.secondaryColor};
+    
     span {
       font-size: 1.4rem;
       padding: 10px;
       color: ${(props) => props.theme.secondaryColor};
     }
+    
     button {
       background: none;
       border: none;
@@ -92,27 +82,28 @@ export const Sidebar = styled.div<SidebarProps>`
       display: flex;
     }
   }
+  
   ul {
     list-style: none;
     padding-bottom: 1rem;
     padding-left: 0;
   }
+  
   ${(props) =>
-    props.animatingIn
-      ? css`
-          animation: ${slide(props.theme.sidebarWidth, true)} ${(props) => props.theme.animationSpeed};
-          animation-timing-function: ease;
-          animation-fill-mode: forwards;
-        `
-      : ""}
+    props.animatingIn &&
+    css`
+      animation: ${slide(props.theme.sidebarWidth, true)} ${props.theme.animationSpeed};
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    `}
+  
   ${(props) =>
-    props.animatingOut
-      ? css`
-          animation: ${slide(props.theme.sidebarWidth, false)} ${(props) => props.theme.animationSpeed};
-          animation-timing-function: ease;
-          animation-fill-mode: forwards;
-        `
-      : ""}
+    props.animatingOut &&
+    css`
+      animation: ${slide(props.theme.sidebarWidth, false)} ${props.theme.animationSpeed};
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    `}
 `;
 
 export const MonthButton = styled.button<MonthButtonProps>`
@@ -126,6 +117,7 @@ export const MonthButton = styled.button<MonthButtonProps>`
   padding: 0.4rem 0.5rem;
   color: ${(props) => (props.current ? props.theme.primaryColor : props.theme.secondaryColor)};
   border-radius: 0;
+  
   &:hover {
     background: ${(props) => props.theme.secondaryColor};
     color: ${(props) => props.theme.primaryColor};
@@ -148,21 +140,20 @@ export const CloseSidebar = styled.button<SidebarProps>`
   z-index: ${(props) => (props.sidebarOpen ? 12 : "auto")};
 
   ${(props) =>
-    props.animatingIn
-      ? css`
-          animation: ${slideToggler(props.theme.sidebarWidth, "left", true)} ${(props) => props.theme.animationSpeed};
-          animation-timing-function: ease;
-          animation-fill-mode: forwards;
-        `
-      : ""}
+    props.animatingIn &&
+    css`
+      animation: ${slideToggler(props.theme.sidebarWidth, "left", true)} ${props.theme.animationSpeed};
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    `}
+  
   ${(props) =>
-    props.animatingOut
-      ? css`
-          animation: ${slideToggler(props.theme.sidebarWidth, "left", false)} ${(props) => props.theme.animationSpeed};
-          animation-timing-function: ease;
-          animation-fill-mode: forwards;
-        `
-      : ""}
+    props.animatingOut &&
+    css`
+      animation: ${slideToggler(props.theme.sidebarWidth, "left", false)} ${props.theme.animationSpeed};
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    `}
 `;
 
 export const Day = styled.div<DayProps>`
@@ -175,45 +166,6 @@ export const Day = styled.div<DayProps>`
   grid-column-start: ${(props) => (props.firstDay ? props.firstOfMonth : "auto")};
 `;
 
-export const DayButton = styled.button<DayButtonProps>`
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 50%;
-  max-width: 55px;
-  max-height: 55px;
-  width: max(1rem, 5vw);
-  height: max(1rem, 5vw);
-  min-width: 32px;
-  min-height: 32px;
-  background: ${(props) => (props.current ? `${props.theme.primaryColor} !important` : "none")};
-  border: ${(props) => (props.today ? `2px solid ${props.theme.todayColor} !important` : "none")};
-  font-size: min(1rem, 5vw);
-  color: ${(props) => (props.current ? `${props.theme.secondaryColor} !important` : props.theme.textColor)};
-  position: relative;
-  &:hover {
-    background: ${(props) => props.theme.primaryColor50} !important;
-  }
-  ${(props) =>
-    props.hasEvent
-      ? css`
-          span {
-            position: relative;
-            &::after {
-              content: "";
-              background: ${(props) => props.theme.indicatorColor};
-              width: 100%;
-              height: 2px;
-              position: absolute;
-              bottom: -2px;
-              left: 0;
-            }
-          }
-        `
-      : ""}
-`;
-
 export const Inner = styled.div`
   padding: 1rem;
   flex-grow: 1;
@@ -221,11 +173,13 @@ export const Inner = styled.div`
   background: ${(props) => props.theme.secondaryColor};
   -ms-overflow-style: none;
   scrollbar-width: none;
+  
   & > div {
     overflow-x: scroll;
     &::-webkit-scrollbar {
       display: none;
     }
+    
     & > div:first-of-type {
       text-align: center;
       display: grid;
@@ -234,11 +188,13 @@ export const Inner = styled.div`
       color: ${(props) => props.theme.textColor};
       font-size: min(0.85rem, 3.5vw);
     }
+    
     & > div:last-of-type {
       display: grid;
       grid-template-columns: repeat(7, minmax(30px, 1fr));
     }
   }
+  
   & > h1 {
     text-align: center;
     margin-bottom: 1rem;
@@ -261,6 +217,7 @@ export const Event = styled.div`
     margin-bottom: 0.7rem;
     word-break: break-word;
   }
+  
   & > div {
     display: flex;
     gap: 1rem;
@@ -271,12 +228,19 @@ export const Event = styled.div`
       display: flex;
       align-items: center;
       gap: 8px;
+      
+      svg {
+        color: inherit;
+        fill: currentColor;
+      }
+      
       span {
         font-size: 1rem;
         font-weight: lighter;
       }
     }
   }
+  
   &:hover {
     box-shadow: 0 0 10px #0004;
   }
@@ -292,8 +256,8 @@ export const Details = styled.div<DetailsProps>`
   ${(props) =>
     props.detailsOpen
       ? css`
-          width: ${(props) => props.theme.detailWidth};
-          min-width: ${(props) => props.theme.detailWidth};
+          width: ${props.theme.detailWidth};
+          min-width: ${props.theme.detailWidth};
           box-shadow: 0 0 10px #0004;
         `
       : css`
@@ -313,6 +277,7 @@ export const Details = styled.div<DetailsProps>`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    
     & > button {
       border: none;
       background: none;
@@ -321,25 +286,28 @@ export const Details = styled.div<DetailsProps>`
       padding: 5px;
     }
   }
+  
   & > div:last-of-type {
     display: flex;
     gap: 0.6rem;
     flex-direction: column;
     align-items: center;
-    flex-direction: column;
     overflow-y: scroll;
     overflow-x: hidden;
     height: 75%;
     -ms-overflow-style: none;
     scrollbar-width: none;
+    
     &::before {
       content: "";
     }
+    
     &::after {
       content: " ";
       white-space: pre;
       line-height: 0;
     }
+    
     &::-webkit-scrollbar {
       display: none;
     }
@@ -363,29 +331,27 @@ export const Details = styled.div<DetailsProps>`
   }
 
   ${(props) =>
-    props.animatingIn
-      ? css`
-          animation: ${slide(props.theme.detailWidth, true)} ${(props) => props.theme.animationSpeed};
-          animation-timing-function: ease;
-          animation-fill-mode: forwards;
-        `
-      : ""}
+    props.animatingIn &&
+    css`
+      animation: ${slide(props.theme.detailWidth, true)} ${props.theme.animationSpeed};
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    `}
+  
   ${(props) =>
-    props.animatingOut
-      ? css`
-          animation: ${slide(props.theme.detailWidth, false)} ${(props) => props.theme.animationSpeed};
-          animation-timing-function: ease;
-          animation-fill-mode: forwards;
-        `
-      : ""}
+    props.animatingOut &&
+    css`
+      animation: ${slide(props.theme.detailWidth, false)} ${props.theme.animationSpeed};
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    `}
 
   ${(props) =>
-    props.floatingPanels
-      ? css`
-          height: 100%;
-          position: absolute;
-        `
-      : ""}
+    props.floatingPanels &&
+    css`
+      height: 100%;
+      position: absolute;
+    `}
 `;
 
 export const CloseDetail = styled.button<CloseDetailProps>`
@@ -400,10 +366,12 @@ export const CloseDetail = styled.button<CloseDetailProps>`
   justify-content: center;
   align-items: center;
   background: ${(props) => props.theme.primaryColor};
+  
   &.defaultOpen {
     right: ${(props) => props.theme.detailWidth};
     z-index: 15;
   }
+  
   &.defaultClosed {
     right: 0;
   }
@@ -412,19 +380,18 @@ export const CloseDetail = styled.button<CloseDetailProps>`
   z-index: ${(props) => (props.detailsOpen ? 15 : "auto")};
 
   ${(props) =>
-    props.animatingIn
-      ? css`
-          animation: ${slideToggler(props.theme.detailWidth, "right", true)} ${(props) => props.theme.animationSpeed};
-          animation-timing-function: ease;
-          animation-fill-mode: forwards;
-        `
-      : ""}
+    props.animatingIn &&
+    css`
+      animation: ${slideToggler(props.theme.detailWidth, "right", true)} ${props.theme.animationSpeed};
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    `}
+  
   ${(props) =>
-    props.animatingOut
-      ? css`
-          animation: ${slideToggler(props.theme.detailWidth, "right", false)} ${(props) => props.theme.animationSpeed};
-          animation-timing-function: ease;
-          animation-fill-mode: forwards;
-        `
-      : ""}
+    props.animatingOut &&
+    css`
+      animation: ${slideToggler(props.theme.detailWidth, "right", false)} ${props.theme.animationSpeed};
+      animation-timing-function: ease;
+      animation-fill-mode: forwards;
+    `}
 `;

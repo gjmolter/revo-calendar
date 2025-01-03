@@ -1,166 +1,271 @@
-# revo-calendar
+# Vantage Calendar
 
-![npm](https://img.shields.io/npm/dt/revo-calendar?style=flat-square)
-![NPM](https://img.shields.io/npm/l/revo-calendar?style=flat-square)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/revo-calendar?style=flat-square)
+A modern, flexible and customizable event calendar built with JavaScript. This calendar provides a rich set of features for displaying and managing events, with support for multiple themes, responsive layouts, and extensive customization options.
 
+> This project was forked from [Evo Calendar](https://edlynvillegas.github.io/evo-calendar/) by Edlyn Villegas. We extend our gratitude for the original work that formed the foundation for this enhanced version.
 
-A modern-looking React Event Calendar component.
+## Installation
 
-Very much inspired on [Evo Calendar](https://github.com/edlynvillegas/evo-calendar/). If you're not using React on your project, I recommend this calendar plugin that runs on jQuery.
-
-## Demo 👀
-
-Live Demo and Playground: [https://gjmolter.github.io/revo-calendar](https://gjmolter.github.io/revo-calendar)
-
-## Install 📦
-
+### Using NPM
 ```bash
-#NPM
-npm i revo-calendar
-
-#YARN
-yarn add revo-calendar
+npm install vantage-calendar
 ```
 
-## Usage ✍️
+### Using CDN
+```html
+<!-- Required Dependencies -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/date-fns/2.30.0/date-fns.min.js"></script>
 
-```jsx
-//Import the component
-import RevoCalendar from "revo-calendar";
-
-const Index = () => {
-  return <RevoCalendar {...props} />;
-};
+<!-- Vantage Calendar CSS and JS -->
+<link rel="stylesheet" href="dist/vantage-calendar.min.css">
+<script src="dist/vantage-calendar.min.js"></script>
 ```
 
-## Available Props 🎛️
+## Basic Usage
 
-| Prop                       | Type      | Default                                           | Description                                                                                                                                                  | Options                                                                                   |
-| -------------------------- | --------- | ------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------- |
-| events                     | array     | `[]`                                              | List of events to be added to the calendar                                                                                                                   | See detailed explanation below                                                            |
-| date                       | Date      | `new Date()`                                      | Default current date                                                                                                                                         | Any JS Date object                                                                        |
-| className                  | string    | `''`                                              | Adds extra CSS classes to the calendar                                                                                                                       | Any class name                                                                            |
-| style                      | CSS-in-JS | `{}`                                              | Adds extra CSS using CSS-in-JS                                                                                                                               | Any CSS-in-JS                                                                             |
-| highlightToday             | bool      | `true`                                            | If `true`, will show a ring around today's date on calendar                                                                                                  | `true` or `false`                                                                         |
-| lang                       | string    | `'en'`                                            | Calendar's language                                                                                                                                          | `en`, `pt`, `fr`, `es`, `de`, `ru` or any other if custom `languages` is used             |
-| primaryColor               | string    | `'#4F6995'`                                       | Background color for the side panels and text color for current month name                                                                                   | Hex, RGB, RGBA, CSS color name                                                            |
-| secondaryColor             | string    | `'#4F6995'`                                       | Calendar background color and side panels text color                                                                                                         | Hex, RGB, RGBA, CSS color name                                                            |
-| todayColor                 | string    | `'#4F6995'`                                       | Color of today's highlight ring (Will only be used if `highlightToday` is `true`                                                                             | Hex, RGB, RGBA, CSS color name                                                            |
-| textColor                  | string    | `'#4F6995'`                                       | Text color for weekday names and day numbers                                                                                                                 | Hex, RGB, RGBA, CSS color name                                                            |
-| indicatorColor             | string    | `'orange'`                                        | Text color for event indicator                                                                                                                               | Hex, RGB, RGBA, CSS color name                                                            |
-| animationSpeed             | number    | `300`                                             | Speed in milliseconds for all transitions and animations                                                                                                     | Any number                                                                                |
-| sidebarWidth               | number    | `180`                                             | Size in pixels of the left panel (month/year selection)                                                                                                      | Any number                                                                                |
-| detailWidth                | number    | `280`                                             | Size in pixels of the right panel (current day's events)                                                                                                     | Any number                                                                                |
-| showSidebarToggler         | bool      | `true`                                            | If `true`, will show left panel's toggling button                                                                                                            | `true` or `false`                                                                         |
-| sidebarDefault             | bool      | `true`                                            | If `true`, will have left panel open by default                                                                                                              | `true` or `false`                                                                         |
-| showDetailToggler          | bool      | `true`                                            | If `true`, will show right panel's toggling button                                                                                                           | `true` or `false`                                                                         |
-| detailDefault              | bool      | `true`                                            | If `true`, will have right panel open by default                                                                                                             | `true` or `false`                                                                         |
-| onePanelAtATime            | bool      | `false`                                           | If `true`, won't allow two panels to be open simultaneously                                                                                                  | `true` or `false`                                                                         |
-| openDetailsOnDateSelection | bool      | `true`                                            | If `true`, will open right panel when date is selected                                                                                                       | `true` or `false`                                                                         |
-| timeFormat24               | bool      | `true`                                            | If `true`, will display dates in 24H format instead of 12 (21:41 instead of 9:41 PM)                                                                         | `true` or `false`                                                                         |
-| detailDateFormat           | string    | `'DD/MM/YYYY'`                                    | The way that current selected date will be displayed on right panel                                                                                          | Any string. See details below                                                             |
-| languages                  | object    | translation object with `en`, `pt`, `es`, `fr`, `ru` and `de` | If the current supported languages are not enough or you want to modify one of the translations, you can add your own translations object. See details below |
-| dateSelected               | function  | `date => {}`                                      | Use this function to get current selected date on your parent component                                                                                      | Any function that receives an object with `day`, `month` and `year` keys                  |
-| eventSelected              | function  | `index => {}`                                     | Use this function to get clicked event's index                                                                                                               | Any function that receives a `number` parameter (event index on `events` array)           |
-| allowDeleteEvent           | bool      | `false`                                           | If `true`, will display delete button when event is clicked                                                                                                  | `true` or `false`                                                                         |
-| allowAddEvent              | bool      | `false`                                           | If `true`, will display add event button on right panel                                                                                                      | `true` or `false`                                                                         |
-| addEvent                   | function  | `date => {}`                                      | Use this function to add Events to `events` array                                                                                                            | Any function that receives an object with `day`, `month` and `year` keys                  |
-| deleteEvent                | function  | `index => {}`                                     | Use this function to delete events from the `events` array                                                                                                   | Any function that receives a `number` parameter (index to be deleted from `events` array) |
+```javascript
+// Initialize calendar
+const calendar = new VantageCalendar('#calendar', {
+    theme: 'default',
+    language: 'en',
+    format: 'yyyy-MM-dd'
+});
 
-### events Prop
+// Add events
+calendar.addEvent([
+    {
+        id: '1',
+        name: 'Meeting',
+        date: '2024-12-13',
+        type: 'meeting',
+        color: '#4CAF50',
+        shape: 'DIAMOND'
+    }
+]);
+```
 
-`events` should receive an array of event objects. Events have two mandatory parameters and two optionals
+## Configuration Options
 
-Event object:
+### Core Options
 
-| Key    | Type           | Mandatory | Descrition                                                                                                                                                                    |
+| Option | Type | Default | Description |
+|--------|------|---------|-------------|
+| theme | string | 'default' | Calendar theme ('default', 'midnight-blue', 'royal-navy', 'orange-coral') |
+| format | string | 'yyyy-MM-dd' | Date format for all dates |
+| titleFormat | string | 'MMMM yyyy' | Format for calendar title |
+| eventHeaderFormat | string | 'MMMM d, yyyy' | Format for event header dates |
+| firstDayOfWeek | number | 0 | First day of week (0 = Sunday, 6 = Saturday) |
+| language | string | 'en' | Calendar language |
+| todayHighlight | boolean | true | Highlight today's date |
+| sidebarDisplayDefault | boolean | true | Show sidebar by default |
+| eventDisplayDefault | boolean | true | Show event list by default |
+| sidebarToggler | boolean | true | Show sidebar toggler button |
+| eventListToggler | boolean | true | Show event list toggler button |
+
+# Event object:
+
+| Key    | Type           | Mandatory | Description                                                                                                                                                                    |
 | ------ | -------------- | --------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | name   | string         | ✔️        | Event name                                                                                                                                                                    |
 | date   | unix timestamp | ✔️        | 13 character timestamp. Can be obtained from adding operator `+` before JS `Date` object.                                                                                     |
 | allDay | bool           |           | If `true`, will ignore `Date` object's time and show `allDay` string from current language's translation object                                                               |
-| extra  | object         |           | If exists, will add one extra event information next to time. The object needs to contain strings: `icon` and `text`. `icon` will be passed as an `svg` `path` `d` parameter. |
+| extra  | object         |           | Optional metadata about the event including icon, text and color.                                                                                                             |
+
+### Extra Object Properties:
+| Key   | Type   | Description                                                                           |
+|-------|--------|---------------------------------------------------------------------------------------|
+| icon  | string | SVG path data or predefined shape constant from `SHAPE_ICONS`                         |
+| text  | string | Additional text displayed next to the icon                                            |
+| color | string | Color for the icon (Hex, RGB, RGBA or CSS color name). Defaults to `indicatorColor`   |
+
+### Available Shape Icons
+The following shapes are predefined and can be used as icon values:
+- `CIRCLE`
+- `SQUARE` 
+- `TRIANGLE`
+- `DIAMOND`
+- `PENTAGON`
 
 Example:
 
 ```js
+import { SHAPE_ICONS } from 'revo-calendar';
+
 var events = [
   {
-    name: "Buyout",
+    name: "Team Meeting",
     date: Date.now(),
-    allDay: true,
+    extra: {
+      icon: SHAPE_ICONS.CIRCLE,
+      text: "Virtual Meeting",
+      color: "#4CAF50"
+    }
   },
   {
-    name: "Reservation",
+    name: "Important Deadline",
     date: 1594422992000,
     extra: {
-      icon: "M20.822 18.096c-3.439-.794-6.64-1.49-5.09-4.418 4.72-8.912 1.251-13.678-3.732-13.678-5.082 0-8.464 4.949-3.732 13.678 1.597 2.945-1.725 3.641-5.09           4.418-3.073.71-3.188 2.236-3.178 4.904l.004 1h23.99l.004-.969c.012-2.688-.092-4.222-3.176-4.935z",
-      text: "7 People",
-    },
-  },
+      // Custom SVG path
+      icon: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z",
+      text: "High Priority",
+      color: "#f44336"
+    }
+  }
 ];
+
+## API Methods
+
+### Calendar Control
+```javascript
+// Set/change theme
+calendar.setTheme('midnight-blue');
+
+// Select specific date
+calendar.dateController.selectDate('2024-12-25');
+
+// Select month
+calendar.monthController.selectMonth(11); // December
+
+// Select year
+calendar.yearController.selectYear(2024);
 ```
 
-The example's `extra.icon` will render this: ![person icon](https://cdn-std.droplr.net/files/acc_519625/A2Wdsw)
+### Event Management
+```javascript
+// Add single event
+calendar.addEvent({
+    id: '1',
+    name: 'Meeting',
+    date: '2024-12-13'
+});
 
-### languages Prop
+// Add multiple events
+calendar.addEvent([
+    {
+        id: '2',
+        name: 'Holiday Party',
+        date: '2024-12-25',
+        type: 'holiday'
+    },
+    {
+        id: '3',
+        name: 'Birthday',
+        date: '2024-12-31',
+        type: 'birthday'
+    }
+]);
 
-You can create an object where each key is a language (key needs to match `lang` atribute), each language needs to have the keys: `days`, `daysShort`, `daysMin`, `months`, `monthsShort`, `noEventForThisDay` and `allDay`.
+// Remove single event
+calendar.removeEvent('1');
 
-Here is an example of the Esperanto language:
+// Clear all events
+calendar.events.clearEvents();
 
-```js
-const translations = {
-  esperanto: {
-    days: ["Dimanĉo", ..."Sabato"],
-    daysShort: ["Dim", ..."Sab"],
-    daysMin: ["Di", ..."Sa"],
-    months: ["Januaro", ..."Decembro"],
-    monthsShort: ["Jan", ..."Dec"],
-    noEventForThisDay: "Neniu evento por ĉi tiu tago ... do ripozu!",
-    allDay: "Tuta tago",
-    addEvent: "Aldoni eventon",
-    delete: "Forigi",
-    eventTime: "Tempo de evento",
-    previousYear: "Pasintjare",
-    nextYear: "Venonta jaro",
-    toggleSidebar: "Baskulu flanka kolumno",
-    toggleDetails: "Ŝaltu Detalojn",
-  },
-};
+// Get all events
+const events = calendar.events.getEvents();
+
+// Get events for specific date
+const dateEvents = calendar.events.getEventsForDate('2024-12-25');
 ```
 
-To render the calendar using custom `esperanto` language, pass the `translations` object and the key to `languages` and `lang` respectivelly.
+### UI Control
+```javascript
+// Toggle sidebar
+calendar.sidebar.toggle();
 
-Example:
+// Toggle event list
+calendar.eventList.toggle();
 
-```jsx
-<RevoCalendar languages={translations} lang="esperanto" />
+// Refresh calendar view
+calendar.refreshView();
+
+// Destroy calendar instance
+calendar.destroy();
 ```
 
-### detailDateFormat Prop
+## Events
 
-detailDateFormat can be any string, with the following placeholders being replaced:
+### Calendar Events
+```javascript
+// Date selection
+calendar.element.on('selectDate', (event, date) => {
+    console.log('Selected date:', date);
+});
 
-| placeholder | replacement          | example  |
-| ----------- | -------------------- | -------- |
-| `MMMM`      | Full month name      | November |
-| `MMM`       | Short month name     | Nov      |
-| `MM`        | Month number         | 11       |
-| `DD`        | Day number           | 18       |
-| `nth`       | Ordinal day number   | 18th     |
-| `dddd`      | Weekday name         | Thursday |
-| `ddd`       | Short weekday name   | Thu      |
-| `dd`        | Tiny weekday name    | Th       |
-| `YYYY`      | Full year            | 1997     |
-| `YY`        | Year's last 2 digits | 97       |
+// Month selection
+calendar.element.on('selectMonth', (event, month, monthIndex) => {
+    console.log('Selected month:', month, monthIndex);
+});
 
-Example
+// Year selection
+calendar.element.on('selectYear', (event, year) => {
+    console.log('Selected year:', year);
+});
 
-```js
-"MMM nth, YYYY" => "Nov 18th, 1997"
+// Event selection
+calendar.element.on('selectEvent', (event, calendarEvent) => {
+    console.log('Selected event:', calendarEvent);
+});
+
+// Calendar initialization
+calendar.element.on('init', (event, calendar) => {
+    console.log('Calendar initialized');
+});
+
+// Calendar destruction
+calendar.element.on('destroy', (event, calendar) => {
+    console.log('Calendar destroyed');
+});
 ```
+
+## Themes
+
+The calendar comes with four built-in themes:
+- `default`: Clean, professional look with purple accents
+- `midnight-blue`: Dark theme with blue accents
+- `royal-navy`: Navy blue theme with gold accents
+- `orange-coral`: Warm theme with orange gradients
+
+### Custom Theming
+
+You can customize the calendar's appearance by modifying the CSS variables defined in the theme files. The main variables are:
+
+```css
+:root {
+    --primary-color: #8773c1;
+    --primary-light: #a692e0;
+    --primary-dark: #755eb5;
+    --bg-color: #fbfbfb;
+    --text-color: #5a5a5a;
+    --border-color: #eaeaea;
+    /* ... and more */
+}
+```
+
+## Responsive Design
+
+The calendar is fully responsive and adapts to different screen sizes:
+- Desktop (>1024px): Full layout with sidebar and event list
+- Tablet (768px-1024px): Collapsible sidebar and event list
+- Mobile (<768px): Optimized mobile view with toggleable components
+
+## Browser Support
+
+- Chrome (latest)
+- Firefox (latest)
+- Safari (latest)
+- Edge (latest)
+- Opera (latest)
 
 ## License
 
-MIT © [gjmolter](https://github.com/gjmolter)
+MIT License - see LICENSE file for details
+
+## Contributing
+
+We welcome contributions! Please see our contributing guidelines for details.
+
+## Support
+
+For bug reports and feature requests, please use the GitHub issues tracker. For questions and discussions, join our community on GitHub Discussions.

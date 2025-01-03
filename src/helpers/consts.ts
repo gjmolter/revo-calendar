@@ -7,6 +7,14 @@ export const SIDEBAR_ICON_SVG =
 
 export const DETAILS_ICON_SVG = "M24 6h-24v-4h24v4zm0 4h-24v4h24v-4zm0 8h-24v4h24v-4z";
 
+export const SHAPE_ICONS = {
+  CIRCLE: "M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z",
+  SQUARE: "M3 3h18v18H3z",
+  TRIANGLE: "M12 2L2 22h20L12 2z",
+  DIAMOND: "M12 2L22 12L12 22L2 12L12 2z",
+  PENTAGON: "M12 2L3 9.5L6 21h12l3-11.5L12 2z"
+};
+
 export const REGULAR_MONTH_DAYS = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 export const LEAP_MONTH_DAYS = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
 

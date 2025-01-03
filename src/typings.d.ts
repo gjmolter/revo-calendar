@@ -1,5 +1,4 @@
-interface SvgrComponent
-  extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
+interface SvgrComponent extends React.StatelessComponent<React.SVGAttributes<SVGElement>> {}
 
 declare module "*.svg" {
   const svgUrl: string;
@@ -8,13 +7,14 @@ declare module "*.svg" {
   export { svgComponent as ReactComponent };
 }
 
-interface Events {
+export interface Events {
   name: string;
   date: number;
   allDay?: boolean;
   extra?: {
     icon?: string;
     text: string;
+    color?: string; // New color field
   };
 }
 
@@ -43,15 +43,28 @@ export interface Props {
   timeFormat24?: boolean;
   showAllDayLabel?: boolean;
   detailDateFormat?: string;
-  languages?: Object;
+  languages?: Record<string, {
+    days: string[];
+    daysShort: string[];
+    daysMin: string[];
+    months: string[];
+    monthsShort: string[];
+    noEventForThisDay: string;
+    allDay: string;
+    addEvent: string;
+    delete: string;
+    eventTime: string;
+    previousYear: string;
+    nextYear: string;
+    toggleSidebar: string;
+    toggleDetails: string;
+  }>;
   date?: Date;
   dateSelected?(date: { day: number; month: number; year: number }): void;
   eventSelected?(index: number): void;
   addEvent?(date: Date): void;
   deleteEvent?(index: number): void;
 }
-
-//Styled Component Props
 
 export interface SidebarProps {
   sidebarOpen: boolean;
@@ -72,6 +85,7 @@ export interface DayButtonProps {
   current: boolean;
   today: boolean;
   hasEvent: boolean;
+  enableHighlight?: boolean;
 }
 
 export interface DetailsProps {
